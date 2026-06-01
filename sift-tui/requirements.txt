@@ -1,0 +1,6 @@
+# sift-tui depends on the sift-agent project (imported via SIFT_AGENT_DIR or
+# the sibling ../sift-agent folder). Install sift-agent's requirements too:
+#     pip install -r ../sift-agent/requirements.txt
+#     pip install -r requirements.txt
+textual>=0.60
+python-dotenv>=1.0.0
