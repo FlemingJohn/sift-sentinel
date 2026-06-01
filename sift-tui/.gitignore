@@ -1,0 +1,13 @@
+# sift-tui — module ignore rules
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Runtime logs
+*.log

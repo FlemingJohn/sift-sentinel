@@ -1,0 +1,20 @@
+# sift-agent — module ignore rules
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets (keep the template)
+.env
+.env.local
+!.env.example
+
+# Runtime logs
+logs/
+*.log
