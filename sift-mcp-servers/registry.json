@@ -1,0 +1,2864 @@
+{
+  "generated_at": "2026-05-16T14:03:21.521997+00:00",
+  "packages_dir": "repoistory-reference/sift-saltstack/sift/packages",
+  "total_packages": 202,
+  "total_tools": 387,
+  "servers": {
+    "memory": [
+      {
+        "package": "aeskeyfind",
+        "binary": "aeskeyfind",
+        "full_path": "/usr/bin/aeskeyfind",
+        "fn_name": "tool_aeskeyfind",
+        "server": "sift-memory"
+      },
+      {
+        "package": "bulk-extractor",
+        "binary": "bulk_extractor",
+        "full_path": "/usr/bin/bulk_extractor",
+        "fn_name": "tool_bulk_extractor",
+        "server": "sift-memory"
+      },
+      {
+        "package": "bulk-extractor",
+        "binary": "plugin_test",
+        "full_path": "/usr/bin/plugin_test",
+        "fn_name": "tool_plugin_test",
+        "server": "sift-memory"
+      },
+      {
+        "package": "ent",
+        "binary": "ent",
+        "full_path": "/usr/bin/ent",
+        "fn_name": "tool_ent",
+        "server": "sift-memory"
+      },
+      {
+        "package": "rsakeyfind",
+        "binary": "rsakeyfind",
+        "full_path": "/usr/bin/rsakeyfind",
+        "fn_name": "tool_rsakeyfind",
+        "server": "sift-memory"
+      }
+    ],
+    "disk": [
+      {
+        "package": "afflib-tools",
+        "binary": "affcat",
+        "full_path": "/usr/bin/affcat",
+        "fn_name": "tool_affcat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affcompare",
+        "full_path": "/usr/bin/affcompare",
+        "fn_name": "tool_affcompare",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affconvert",
+        "full_path": "/usr/bin/affconvert",
+        "fn_name": "tool_affconvert",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affcopy",
+        "full_path": "/usr/bin/affcopy",
+        "fn_name": "tool_affcopy",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affcrypto",
+        "full_path": "/usr/bin/affcrypto",
+        "fn_name": "tool_affcrypto",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affdiskprint",
+        "full_path": "/usr/bin/affdiskprint",
+        "fn_name": "tool_affdiskprint",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affinfo",
+        "full_path": "/usr/bin/affinfo",
+        "fn_name": "tool_affinfo",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affix",
+        "full_path": "/usr/bin/affix",
+        "fn_name": "tool_affix",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affrecover",
+        "full_path": "/usr/bin/affrecover",
+        "fn_name": "tool_affrecover",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affsegment",
+        "full_path": "/usr/bin/affsegment",
+        "fn_name": "tool_affsegment",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affsign",
+        "full_path": "/usr/bin/affsign",
+        "fn_name": "tool_affsign",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affstats",
+        "full_path": "/usr/bin/affstats",
+        "fn_name": "tool_affstats",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affuse",
+        "full_path": "/usr/bin/affuse",
+        "fn_name": "tool_affuse",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affverify",
+        "full_path": "/usr/bin/affverify",
+        "fn_name": "tool_affverify",
+        "server": "sift-disk"
+      },
+      {
+        "package": "afflib-tools",
+        "binary": "affxml",
+        "full_path": "/usr/bin/affxml",
+        "fn_name": "tool_affxml",
+        "server": "sift-disk"
+      },
+      {
+        "package": "autopsy",
+        "binary": "autopsy",
+        "full_path": "/usr/bin/autopsy",
+        "fn_name": "tool_autopsy",
+        "server": "sift-disk"
+      },
+      {
+        "package": "avfs",
+        "binary": "avfs-config",
+        "full_path": "/usr/bin/avfs-config",
+        "fn_name": "tool_avfs_config",
+        "server": "sift-disk"
+      },
+      {
+        "package": "avfs",
+        "binary": "avfsd",
+        "full_path": "/usr/bin/avfsd",
+        "fn_name": "tool_avfsd",
+        "server": "sift-disk"
+      },
+      {
+        "package": "avfs",
+        "binary": "davpass",
+        "full_path": "/usr/bin/davpass",
+        "fn_name": "tool_davpass",
+        "server": "sift-disk"
+      },
+      {
+        "package": "avfs",
+        "binary": "ftppass",
+        "full_path": "/usr/bin/ftppass",
+        "fn_name": "tool_ftppass",
+        "server": "sift-disk"
+      },
+      {
+        "package": "avfs",
+        "binary": "mountavfs",
+        "full_path": "/usr/bin/mountavfs",
+        "fn_name": "tool_mountavfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "avfs",
+        "binary": "umountavfs",
+        "full_path": "/usr/bin/umountavfs",
+        "fn_name": "tool_umountavfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "dc3dd",
+        "binary": "dc3dd",
+        "full_path": "/usr/bin/dc3dd",
+        "fn_name": "tool_dc3dd",
+        "server": "sift-disk"
+      },
+      {
+        "package": "dcfldd",
+        "binary": "dcfldd",
+        "full_path": "/usr/bin/dcfldd",
+        "fn_name": "tool_dcfldd",
+        "server": "sift-disk"
+      },
+      {
+        "package": "disktype",
+        "binary": "disktype",
+        "full_path": "/usr/bin/disktype",
+        "fn_name": "tool_disktype",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "badblocks",
+        "full_path": "/sbin/badblocks",
+        "fn_name": "tool_badblocks",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "debugfs",
+        "full_path": "/sbin/debugfs",
+        "fn_name": "tool_debugfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "dumpe2fs",
+        "full_path": "/sbin/dumpe2fs",
+        "fn_name": "tool_dumpe2fs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2fsck",
+        "full_path": "/sbin/e2fsck",
+        "fn_name": "tool_e2fsck",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2image",
+        "full_path": "/sbin/e2image",
+        "fn_name": "tool_e2image",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2scrub",
+        "full_path": "/sbin/e2scrub",
+        "fn_name": "tool_e2scrub",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2scrub_all",
+        "full_path": "/sbin/e2scrub_all",
+        "fn_name": "tool_e2scrub_all",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2undo",
+        "full_path": "/sbin/e2undo",
+        "fn_name": "tool_e2undo",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "mke2fs",
+        "full_path": "/sbin/mke2fs",
+        "fn_name": "tool_mke2fs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "resize2fs",
+        "full_path": "/sbin/resize2fs",
+        "fn_name": "tool_resize2fs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "tune2fs",
+        "full_path": "/sbin/tune2fs",
+        "fn_name": "tool_tune2fs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "chattr",
+        "full_path": "/usr/bin/chattr",
+        "fn_name": "tool_chattr",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "lsattr",
+        "full_path": "/usr/bin/lsattr",
+        "fn_name": "tool_lsattr",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2freefrag",
+        "full_path": "/usr/sbin/e2freefrag",
+        "fn_name": "tool_e2freefrag",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e4crypt",
+        "full_path": "/usr/sbin/e4crypt",
+        "fn_name": "tool_e4crypt",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e4defrag",
+        "full_path": "/usr/sbin/e4defrag",
+        "fn_name": "tool_e4defrag",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "filefrag",
+        "full_path": "/usr/sbin/filefrag",
+        "fn_name": "tool_filefrag",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "mklost+found",
+        "full_path": "/usr/sbin/mklost+found",
+        "fn_name": "tool_mklost_found",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2label",
+        "full_path": "/sbin/e2label",
+        "fn_name": "tool_e2label",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "e2mmpstatus",
+        "full_path": "/sbin/e2mmpstatus",
+        "fn_name": "tool_e2mmpstatus",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "fsck.ext2",
+        "full_path": "/sbin/fsck.ext2",
+        "fn_name": "tool_fsck_ext2",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "fsck.ext3",
+        "full_path": "/sbin/fsck.ext3",
+        "fn_name": "tool_fsck_ext3",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "fsck.ext4",
+        "full_path": "/sbin/fsck.ext4",
+        "fn_name": "tool_fsck_ext4",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "mkfs.ext2",
+        "full_path": "/sbin/mkfs.ext2",
+        "fn_name": "tool_mkfs_ext2",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "mkfs.ext3",
+        "full_path": "/sbin/mkfs.ext3",
+        "fn_name": "tool_mkfs_ext3",
+        "server": "sift-disk"
+      },
+      {
+        "package": "e2fsprogs",
+        "binary": "mkfs.ext4",
+        "full_path": "/sbin/mkfs.ext4",
+        "fn_name": "tool_mkfs_ext4",
+        "server": "sift-disk"
+      },
+      {
+        "package": "exfat-fuse",
+        "binary": "mount.exfat-fuse",
+        "full_path": "/sbin/mount.exfat-fuse",
+        "fn_name": "tool_mount_exfat_fuse",
+        "server": "sift-disk"
+      },
+      {
+        "package": "exif",
+        "binary": "exif",
+        "full_path": "/usr/bin/exif",
+        "fn_name": "tool_exif",
+        "server": "sift-disk"
+      },
+      {
+        "package": "extundelete",
+        "binary": "extundelete",
+        "full_path": "/usr/bin/extundelete",
+        "fn_name": "tool_extundelete",
+        "server": "sift-disk"
+      },
+      {
+        "package": "fdupes",
+        "binary": "fdupes",
+        "full_path": "/usr/bin/fdupes",
+        "fn_name": "tool_fdupes",
+        "server": "sift-disk"
+      },
+      {
+        "package": "feh",
+        "binary": "feh",
+        "full_path": "/usr/bin/feh",
+        "fn_name": "tool_feh",
+        "server": "sift-disk"
+      },
+      {
+        "package": "foremost",
+        "binary": "foremost",
+        "full_path": "/usr/bin/foremost",
+        "fn_name": "tool_foremost",
+        "server": "sift-disk"
+      },
+      {
+        "package": "gddrescue",
+        "binary": "ddrescue",
+        "full_path": "/usr/bin/ddrescue",
+        "fn_name": "tool_ddrescue",
+        "server": "sift-disk"
+      },
+      {
+        "package": "gddrescue",
+        "binary": "ddrescuelog",
+        "full_path": "/usr/bin/ddrescuelog",
+        "fn_name": "tool_ddrescuelog",
+        "server": "sift-disk"
+      },
+      {
+        "package": "git",
+        "binary": "git",
+        "full_path": "/usr/bin/git",
+        "fn_name": "tool_git",
+        "server": "sift-disk"
+      },
+      {
+        "package": "git",
+        "binary": "git-shell",
+        "full_path": "/usr/bin/git-shell",
+        "fn_name": "tool_git_shell",
+        "server": "sift-disk"
+      },
+      {
+        "package": "git",
+        "binary": "git-receive-pack",
+        "full_path": "/usr/bin/git-receive-pack",
+        "fn_name": "tool_git_receive_pack",
+        "server": "sift-disk"
+      },
+      {
+        "package": "git",
+        "binary": "git-upload-archive",
+        "full_path": "/usr/bin/git-upload-archive",
+        "fn_name": "tool_git_upload_archive",
+        "server": "sift-disk"
+      },
+      {
+        "package": "git",
+        "binary": "git-upload-pack",
+        "full_path": "/usr/bin/git-upload-pack",
+        "fn_name": "tool_git_upload_pack",
+        "server": "sift-disk"
+      },
+      {
+        "package": "gzrt",
+        "binary": "gzrecover",
+        "full_path": "/usr/bin/gzrecover",
+        "fn_name": "tool_gzrecover",
+        "server": "sift-disk"
+      },
+      {
+        "package": "jq",
+        "binary": "jq",
+        "full_path": "/usr/bin/jq",
+        "fn_name": "tool_jq",
+        "server": "sift-disk"
+      },
+      {
+        "package": "kpartx",
+        "binary": "kpartx",
+        "full_path": "/sbin/kpartx",
+        "fn_name": "tool_kpartx",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfacquire",
+        "full_path": "/usr/bin/ewfacquire",
+        "fn_name": "tool_ewfacquire",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfacquirestream",
+        "full_path": "/usr/bin/ewfacquirestream",
+        "fn_name": "tool_ewfacquirestream",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfdebug",
+        "full_path": "/usr/bin/ewfdebug",
+        "fn_name": "tool_ewfdebug",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfexport",
+        "full_path": "/usr/bin/ewfexport",
+        "fn_name": "tool_ewfexport",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfinfo",
+        "full_path": "/usr/bin/ewfinfo",
+        "fn_name": "tool_ewfinfo",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfmount",
+        "full_path": "/usr/bin/ewfmount",
+        "fn_name": "tool_ewfmount",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfrecover",
+        "full_path": "/usr/bin/ewfrecover",
+        "fn_name": "tool_ewfrecover",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libewf-tools",
+        "binary": "ewfverify",
+        "full_path": "/usr/bin/ewfverify",
+        "fn_name": "tool_ewfverify",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libfsapfs-tools",
+        "binary": "fsapfsinfo",
+        "full_path": "/usr/bin/fsapfsinfo",
+        "fn_name": "tool_fsapfsinfo",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libfsapfs-tools",
+        "binary": "fsapfsmount",
+        "full_path": "/usr/bin/fsapfsmount",
+        "fn_name": "tool_fsapfsmount",
+        "server": "sift-disk"
+      },
+      {
+        "package": "libplist-utils",
+        "binary": "plistutil",
+        "full_path": "/usr/bin/plistutil",
+        "fn_name": "tool_plistutil",
+        "server": "sift-disk"
+      },
+      {
+        "package": "nbd-client",
+        "binary": "nbd-client",
+        "full_path": "/sbin/nbd-client",
+        "fn_name": "tool_nbd_client",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "lowntfs-3g",
+        "full_path": "/bin/lowntfs-3g",
+        "fn_name": "tool_lowntfs_3g",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfs-3g",
+        "full_path": "/bin/ntfs-3g",
+        "fn_name": "tool_ntfs_3g",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfs-3g.probe",
+        "full_path": "/bin/ntfs-3g.probe",
+        "fn_name": "tool_ntfs_3g_probe",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfscat",
+        "full_path": "/bin/ntfscat",
+        "fn_name": "tool_ntfscat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfscluster",
+        "full_path": "/bin/ntfscluster",
+        "fn_name": "tool_ntfscluster",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfscmp",
+        "full_path": "/bin/ntfscmp",
+        "fn_name": "tool_ntfscmp",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsfallocate",
+        "full_path": "/bin/ntfsfallocate",
+        "fn_name": "tool_ntfsfallocate",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsfix",
+        "full_path": "/bin/ntfsfix",
+        "fn_name": "tool_ntfsfix",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsinfo",
+        "full_path": "/bin/ntfsinfo",
+        "fn_name": "tool_ntfsinfo",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsls",
+        "full_path": "/bin/ntfsls",
+        "fn_name": "tool_ntfsls",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsmove",
+        "full_path": "/bin/ntfsmove",
+        "fn_name": "tool_ntfsmove",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsrecover",
+        "full_path": "/bin/ntfsrecover",
+        "fn_name": "tool_ntfsrecover",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfssecaudit",
+        "full_path": "/bin/ntfssecaudit",
+        "fn_name": "tool_ntfssecaudit",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfstruncate",
+        "full_path": "/bin/ntfstruncate",
+        "fn_name": "tool_ntfstruncate",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsusermap",
+        "full_path": "/bin/ntfsusermap",
+        "fn_name": "tool_ntfsusermap",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfswipe",
+        "full_path": "/bin/ntfswipe",
+        "fn_name": "tool_ntfswipe",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "mkntfs",
+        "full_path": "/sbin/mkntfs",
+        "fn_name": "tool_mkntfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsclone",
+        "full_path": "/sbin/ntfsclone",
+        "fn_name": "tool_ntfsclone",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfscp",
+        "full_path": "/sbin/ntfscp",
+        "fn_name": "tool_ntfscp",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfslabel",
+        "full_path": "/sbin/ntfslabel",
+        "fn_name": "tool_ntfslabel",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsresize",
+        "full_path": "/sbin/ntfsresize",
+        "fn_name": "tool_ntfsresize",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsundelete",
+        "full_path": "/sbin/ntfsundelete",
+        "fn_name": "tool_ntfsundelete",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "ntfsdecrypt",
+        "full_path": "/usr/bin/ntfsdecrypt",
+        "fn_name": "tool_ntfsdecrypt",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "mkfs.ntfs",
+        "full_path": "/sbin/mkfs.ntfs",
+        "fn_name": "tool_mkfs_ntfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "mount.lowntfs-3g",
+        "full_path": "/sbin/mount.lowntfs-3g",
+        "fn_name": "tool_mount_lowntfs_3g",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "mount.ntfs",
+        "full_path": "/sbin/mount.ntfs",
+        "fn_name": "tool_mount_ntfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "ntfs-3g",
+        "binary": "mount.ntfs-3g",
+        "full_path": "/sbin/mount.ntfs-3g",
+        "fn_name": "tool_mount_ntfs_3g",
+        "server": "sift-disk"
+      },
+      {
+        "package": "p7zip-full",
+        "binary": "7z",
+        "full_path": "/usr/bin/7z",
+        "fn_name": "tool_7z",
+        "server": "sift-disk"
+      },
+      {
+        "package": "p7zip-full",
+        "binary": "7za",
+        "full_path": "/usr/bin/7za",
+        "fn_name": "tool_7za",
+        "server": "sift-disk"
+      },
+      {
+        "package": "qemu-utils",
+        "binary": "qemu-img",
+        "full_path": "/usr/bin/qemu-img",
+        "fn_name": "tool_qemu_img",
+        "server": "sift-disk"
+      },
+      {
+        "package": "qemu-utils",
+        "binary": "qemu-io",
+        "full_path": "/usr/bin/qemu-io",
+        "fn_name": "tool_qemu_io",
+        "server": "sift-disk"
+      },
+      {
+        "package": "qemu-utils",
+        "binary": "qemu-nbd",
+        "full_path": "/usr/bin/qemu-nbd",
+        "fn_name": "tool_qemu_nbd",
+        "server": "sift-disk"
+      },
+      {
+        "package": "qemu-utils",
+        "binary": "qemu-make-debian-root",
+        "full_path": "/usr/sbin/qemu-make-debian-root",
+        "fn_name": "tool_qemu_make_debian_root",
+        "server": "sift-disk"
+      },
+      {
+        "package": "rar",
+        "binary": "rar",
+        "full_path": "/usr/bin/rar",
+        "fn_name": "tool_rar",
+        "server": "sift-disk"
+      },
+      {
+        "package": "safecopy",
+        "binary": "safecopy",
+        "full_path": "/usr/bin/safecopy",
+        "fn_name": "tool_safecopy",
+        "server": "sift-disk"
+      },
+      {
+        "package": "scalpel",
+        "binary": "scalpel",
+        "full_path": "/usr/bin/scalpel",
+        "fn_name": "tool_scalpel",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "blkcalc",
+        "full_path": "/usr/bin/blkcalc",
+        "fn_name": "tool_blkcalc",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "blkcat",
+        "full_path": "/usr/bin/blkcat",
+        "fn_name": "tool_blkcat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "blkls",
+        "full_path": "/usr/bin/blkls",
+        "fn_name": "tool_blkls",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "blkstat",
+        "full_path": "/usr/bin/blkstat",
+        "fn_name": "tool_blkstat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "fcat",
+        "full_path": "/usr/bin/fcat",
+        "fn_name": "tool_fcat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "ffind",
+        "full_path": "/usr/bin/ffind",
+        "fn_name": "tool_ffind",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "fiwalk",
+        "full_path": "/usr/bin/fiwalk",
+        "fn_name": "tool_fiwalk",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "fls",
+        "full_path": "/usr/bin/fls",
+        "fn_name": "tool_fls",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "fsstat",
+        "full_path": "/usr/bin/fsstat",
+        "fn_name": "tool_fsstat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "hfind",
+        "full_path": "/usr/bin/hfind",
+        "fn_name": "tool_hfind",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "icat",
+        "full_path": "/usr/bin/icat",
+        "fn_name": "tool_icat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "ifind",
+        "full_path": "/usr/bin/ifind",
+        "fn_name": "tool_ifind",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "ils",
+        "full_path": "/usr/bin/ils",
+        "fn_name": "tool_ils",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "img_cat",
+        "full_path": "/usr/bin/img_cat",
+        "fn_name": "tool_img_cat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "img_stat",
+        "full_path": "/usr/bin/img_stat",
+        "fn_name": "tool_img_stat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "istat",
+        "full_path": "/usr/bin/istat",
+        "fn_name": "tool_istat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "jcat",
+        "full_path": "/usr/bin/jcat",
+        "fn_name": "tool_jcat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "jls",
+        "full_path": "/usr/bin/jls",
+        "fn_name": "tool_jls",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "jpeg_extract",
+        "full_path": "/usr/bin/jpeg_extract",
+        "fn_name": "tool_jpeg_extract",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "mactime",
+        "full_path": "/usr/bin/mactime",
+        "fn_name": "tool_mactime",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "mmcat",
+        "full_path": "/usr/bin/mmcat",
+        "fn_name": "tool_mmcat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "mmls",
+        "full_path": "/usr/bin/mmls",
+        "fn_name": "tool_mmls",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "mmstat",
+        "full_path": "/usr/bin/mmstat",
+        "fn_name": "tool_mmstat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "pstat",
+        "full_path": "/usr/bin/pstat",
+        "fn_name": "tool_pstat",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "sigfind",
+        "full_path": "/usr/bin/sigfind",
+        "fn_name": "tool_sigfind",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "sorter",
+        "full_path": "/usr/bin/sorter",
+        "fn_name": "tool_sorter",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "srch_strings",
+        "full_path": "/usr/bin/srch_strings",
+        "fn_name": "tool_srch_strings",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "tsk_comparedir",
+        "full_path": "/usr/bin/tsk_comparedir",
+        "fn_name": "tool_tsk_comparedir",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "tsk_gettimes",
+        "full_path": "/usr/bin/tsk_gettimes",
+        "fn_name": "tool_tsk_gettimes",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "tsk_imageinfo",
+        "full_path": "/usr/bin/tsk_imageinfo",
+        "fn_name": "tool_tsk_imageinfo",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "tsk_loaddb",
+        "full_path": "/usr/bin/tsk_loaddb",
+        "fn_name": "tool_tsk_loaddb",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "tsk_recover",
+        "full_path": "/usr/bin/tsk_recover",
+        "fn_name": "tool_tsk_recover",
+        "server": "sift-disk"
+      },
+      {
+        "package": "sleuthkit",
+        "binary": "usnjls",
+        "full_path": "/usr/bin/usnjls",
+        "fn_name": "tool_usnjls",
+        "server": "sift-disk"
+      },
+      {
+        "package": "testdisk",
+        "binary": "fidentify",
+        "full_path": "/usr/bin/fidentify",
+        "fn_name": "tool_fidentify",
+        "server": "sift-disk"
+      },
+      {
+        "package": "testdisk",
+        "binary": "photorec",
+        "full_path": "/usr/bin/photorec",
+        "fn_name": "tool_photorec",
+        "server": "sift-disk"
+      },
+      {
+        "package": "testdisk",
+        "binary": "testdisk",
+        "full_path": "/usr/bin/testdisk",
+        "fn_name": "tool_testdisk",
+        "server": "sift-disk"
+      },
+      {
+        "package": "vbindiff",
+        "binary": "vbindiff",
+        "full_path": "/usr/bin/vbindiff",
+        "fn_name": "tool_vbindiff",
+        "server": "sift-disk"
+      },
+      {
+        "package": "vmfs-tools",
+        "binary": "debugvmfs",
+        "full_path": "/usr/sbin/debugvmfs",
+        "fn_name": "tool_debugvmfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "vmfs-tools",
+        "binary": "fsck.vmfs",
+        "full_path": "/usr/sbin/fsck.vmfs",
+        "fn_name": "tool_fsck_vmfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "vmfs-tools",
+        "binary": "vmfs-fuse",
+        "full_path": "/usr/sbin/vmfs-fuse",
+        "fn_name": "tool_vmfs_fuse",
+        "server": "sift-disk"
+      },
+      {
+        "package": "vmfs-tools",
+        "binary": "vmfs-lvm",
+        "full_path": "/usr/sbin/vmfs-lvm",
+        "fn_name": "tool_vmfs_lvm",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "fsck.xfs",
+        "full_path": "/sbin/fsck.xfs",
+        "fn_name": "tool_fsck_xfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "mkfs.xfs",
+        "full_path": "/sbin/mkfs.xfs",
+        "fn_name": "tool_mkfs_xfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_repair",
+        "full_path": "/sbin/xfs_repair",
+        "fn_name": "tool_xfs_repair",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_admin",
+        "full_path": "/usr/sbin/xfs_admin",
+        "fn_name": "tool_xfs_admin",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_bmap",
+        "full_path": "/usr/sbin/xfs_bmap",
+        "fn_name": "tool_xfs_bmap",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_copy",
+        "full_path": "/usr/sbin/xfs_copy",
+        "fn_name": "tool_xfs_copy",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_db",
+        "full_path": "/usr/sbin/xfs_db",
+        "fn_name": "tool_xfs_db",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_estimate",
+        "full_path": "/usr/sbin/xfs_estimate",
+        "fn_name": "tool_xfs_estimate",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_freeze",
+        "full_path": "/usr/sbin/xfs_freeze",
+        "fn_name": "tool_xfs_freeze",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_fsr",
+        "full_path": "/usr/sbin/xfs_fsr",
+        "fn_name": "tool_xfs_fsr",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_growfs",
+        "full_path": "/usr/sbin/xfs_growfs",
+        "fn_name": "tool_xfs_growfs",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_info",
+        "full_path": "/usr/sbin/xfs_info",
+        "fn_name": "tool_xfs_info",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_io",
+        "full_path": "/usr/sbin/xfs_io",
+        "fn_name": "tool_xfs_io",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_logprint",
+        "full_path": "/usr/sbin/xfs_logprint",
+        "fn_name": "tool_xfs_logprint",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_mdrestore",
+        "full_path": "/usr/sbin/xfs_mdrestore",
+        "fn_name": "tool_xfs_mdrestore",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_metadump",
+        "full_path": "/usr/sbin/xfs_metadump",
+        "fn_name": "tool_xfs_metadump",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_mkfile",
+        "full_path": "/usr/sbin/xfs_mkfile",
+        "fn_name": "tool_xfs_mkfile",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_ncheck",
+        "full_path": "/usr/sbin/xfs_ncheck",
+        "fn_name": "tool_xfs_ncheck",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_quota",
+        "full_path": "/usr/sbin/xfs_quota",
+        "fn_name": "tool_xfs_quota",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_rtcp",
+        "full_path": "/usr/sbin/xfs_rtcp",
+        "fn_name": "tool_xfs_rtcp",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_scrub",
+        "full_path": "/usr/sbin/xfs_scrub",
+        "fn_name": "tool_xfs_scrub",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_scrub_all",
+        "full_path": "/usr/sbin/xfs_scrub_all",
+        "fn_name": "tool_xfs_scrub_all",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xfsprogs",
+        "binary": "xfs_spaceman",
+        "full_path": "/usr/sbin/xfs_spaceman",
+        "fn_name": "tool_xfs_spaceman",
+        "server": "sift-disk"
+      },
+      {
+        "package": "xmount",
+        "binary": "xmount",
+        "full_path": "/usr/bin/xmount",
+        "fn_name": "tool_xmount",
+        "server": "sift-disk"
+      }
+    ],
+    "network": [
+      {
+        "package": "aircrack-ng",
+        "binary": "aircrack-ng",
+        "full_path": "/usr/bin/aircrack-ng",
+        "fn_name": "tool_aircrack_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airdecap-ng",
+        "full_path": "/usr/bin/airdecap-ng",
+        "fn_name": "tool_airdecap_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airdecloak-ng",
+        "full_path": "/usr/bin/airdecloak-ng",
+        "fn_name": "tool_airdecloak_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airolib-ng",
+        "full_path": "/usr/bin/airolib-ng",
+        "fn_name": "tool_airolib_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "besside-ng-crawler",
+        "full_path": "/usr/bin/besside-ng-crawler",
+        "fn_name": "tool_besside_ng_crawler",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "buddy-ng",
+        "full_path": "/usr/bin/buddy-ng",
+        "fn_name": "tool_buddy_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "dcrack",
+        "full_path": "/usr/bin/dcrack",
+        "fn_name": "tool_dcrack",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "ivstools",
+        "full_path": "/usr/bin/ivstools",
+        "fn_name": "tool_ivstools",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "kstats",
+        "full_path": "/usr/bin/kstats",
+        "fn_name": "tool_kstats",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "makeivs-ng",
+        "full_path": "/usr/bin/makeivs-ng",
+        "fn_name": "tool_makeivs_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "packetforge-ng",
+        "full_path": "/usr/bin/packetforge-ng",
+        "fn_name": "tool_packetforge_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "wpaclean",
+        "full_path": "/usr/bin/wpaclean",
+        "fn_name": "tool_wpaclean",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airbase-ng",
+        "full_path": "/usr/sbin/airbase-ng",
+        "fn_name": "tool_airbase_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "aireplay-ng",
+        "full_path": "/usr/sbin/aireplay-ng",
+        "fn_name": "tool_aireplay_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airmon-ng",
+        "full_path": "/usr/sbin/airmon-ng",
+        "fn_name": "tool_airmon_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airodump-ng",
+        "full_path": "/usr/sbin/airodump-ng",
+        "fn_name": "tool_airodump_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airodump-ng-oui-update",
+        "full_path": "/usr/sbin/airodump-ng-oui-update",
+        "fn_name": "tool_airodump_ng_oui_update",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airserv-ng",
+        "full_path": "/usr/sbin/airserv-ng",
+        "fn_name": "tool_airserv_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airtun-ng",
+        "full_path": "/usr/sbin/airtun-ng",
+        "fn_name": "tool_airtun_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "airventriloquist-ng",
+        "full_path": "/usr/sbin/airventriloquist-ng",
+        "fn_name": "tool_airventriloquist_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "besside-ng",
+        "full_path": "/usr/sbin/besside-ng",
+        "fn_name": "tool_besside_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "easside-ng",
+        "full_path": "/usr/sbin/easside-ng",
+        "fn_name": "tool_easside_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "tkiptun-ng",
+        "full_path": "/usr/sbin/tkiptun-ng",
+        "fn_name": "tool_tkiptun_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "aircrack-ng",
+        "binary": "wesside-ng",
+        "full_path": "/usr/sbin/wesside-ng",
+        "fn_name": "tool_wesside_ng",
+        "server": "sift-network"
+      },
+      {
+        "package": "arp-scan",
+        "binary": "arp-fingerprint",
+        "full_path": "/usr/sbin/arp-fingerprint",
+        "fn_name": "tool_arp_fingerprint",
+        "server": "sift-network"
+      },
+      {
+        "package": "arp-scan",
+        "binary": "arp-scan",
+        "full_path": "/usr/sbin/arp-scan",
+        "fn_name": "tool_arp_scan",
+        "server": "sift-network"
+      },
+      {
+        "package": "arp-scan",
+        "binary": "get-iab",
+        "full_path": "/usr/sbin/get-iab",
+        "fn_name": "tool_get_iab",
+        "server": "sift-network"
+      },
+      {
+        "package": "arp-scan",
+        "binary": "get-oui",
+        "full_path": "/usr/sbin/get-oui",
+        "fn_name": "tool_get_oui",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "mount.cifs",
+        "full_path": "/sbin/mount.cifs",
+        "fn_name": "tool_mount_cifs",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "cifscreds",
+        "full_path": "/usr/bin/cifscreds",
+        "fn_name": "tool_cifscreds",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "getcifsacl",
+        "full_path": "/usr/bin/getcifsacl",
+        "fn_name": "tool_getcifsacl",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "setcifsacl",
+        "full_path": "/usr/bin/setcifsacl",
+        "fn_name": "tool_setcifsacl",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "smb2-quota",
+        "full_path": "/usr/bin/smb2-quota",
+        "fn_name": "tool_smb2_quota",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "smbinfo",
+        "full_path": "/usr/bin/smbinfo",
+        "fn_name": "tool_smbinfo",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "cifs.idmap",
+        "full_path": "/usr/sbin/cifs.idmap",
+        "fn_name": "tool_cifs_idmap",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "cifs.upcall",
+        "full_path": "/usr/sbin/cifs.upcall",
+        "fn_name": "tool_cifs_upcall",
+        "server": "sift-network"
+      },
+      {
+        "package": "cifs-utils",
+        "binary": "mount.smb3",
+        "full_path": "/sbin/mount.smb3",
+        "fn_name": "tool_mount_smb3",
+        "server": "sift-network"
+      },
+      {
+        "package": "cryptcat",
+        "binary": "cryptcat",
+        "full_path": "/usr/bin/cryptcat",
+        "fn_name": "tool_cryptcat",
+        "server": "sift-network"
+      },
+      {
+        "package": "driftnet",
+        "binary": "driftnet",
+        "full_path": "/usr/bin/driftnet",
+        "fn_name": "tool_driftnet",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "arpspoof",
+        "full_path": "/usr/sbin/arpspoof",
+        "fn_name": "tool_arpspoof",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "dnsspoof",
+        "full_path": "/usr/sbin/dnsspoof",
+        "fn_name": "tool_dnsspoof",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "dsniff",
+        "full_path": "/usr/sbin/dsniff",
+        "fn_name": "tool_dsniff",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "filesnarf",
+        "full_path": "/usr/sbin/filesnarf",
+        "fn_name": "tool_filesnarf",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "macof",
+        "full_path": "/usr/sbin/macof",
+        "fn_name": "tool_macof",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "mailsnarf",
+        "full_path": "/usr/sbin/mailsnarf",
+        "fn_name": "tool_mailsnarf",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "msgsnarf",
+        "full_path": "/usr/sbin/msgsnarf",
+        "fn_name": "tool_msgsnarf",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "sshmitm",
+        "full_path": "/usr/sbin/sshmitm",
+        "fn_name": "tool_sshmitm",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "sshow",
+        "full_path": "/usr/sbin/sshow",
+        "fn_name": "tool_sshow",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "tcpkill",
+        "full_path": "/usr/sbin/tcpkill",
+        "fn_name": "tool_tcpkill",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "tcpnice",
+        "full_path": "/usr/sbin/tcpnice",
+        "fn_name": "tool_tcpnice",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "urlsnarf",
+        "full_path": "/usr/sbin/urlsnarf",
+        "fn_name": "tool_urlsnarf",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "webmitm",
+        "full_path": "/usr/sbin/webmitm",
+        "fn_name": "tool_webmitm",
+        "server": "sift-network"
+      },
+      {
+        "package": "dsniff",
+        "binary": "webspy",
+        "full_path": "/usr/sbin/webspy",
+        "fn_name": "tool_webspy",
+        "server": "sift-network"
+      },
+      {
+        "package": "etherape",
+        "binary": "etherape",
+        "full_path": "/usr/bin/etherape",
+        "fn_name": "tool_etherape",
+        "server": "sift-network"
+      },
+      {
+        "package": "ettercap-graphical",
+        "binary": "ettercap",
+        "full_path": "/usr/bin/ettercap",
+        "fn_name": "tool_ettercap",
+        "server": "sift-network"
+      },
+      {
+        "package": "ettercap-graphical",
+        "binary": "ettercap-pkexec",
+        "full_path": "/usr/bin/ettercap-pkexec",
+        "fn_name": "tool_ettercap_pkexec",
+        "server": "sift-network"
+      },
+      {
+        "package": "ettercap-graphical",
+        "binary": "etterfilter",
+        "full_path": "/usr/bin/etterfilter",
+        "fn_name": "tool_etterfilter",
+        "server": "sift-network"
+      },
+      {
+        "package": "ettercap-graphical",
+        "binary": "etterlog",
+        "full_path": "/usr/bin/etterlog",
+        "fn_name": "tool_etterlog",
+        "server": "sift-network"
+      },
+      {
+        "package": "grepcidr",
+        "binary": "grepcidr",
+        "full_path": "/usr/bin/grepcidr",
+        "fn_name": "tool_grepcidr",
+        "server": "sift-network"
+      },
+      {
+        "package": "lft",
+        "binary": "lft",
+        "full_path": "/usr/sbin/lft",
+        "fn_name": "tool_lft",
+        "server": "sift-network"
+      },
+      {
+        "package": "lft",
+        "binary": "whob",
+        "full_path": "/usr/sbin/whob",
+        "fn_name": "tool_whob",
+        "server": "sift-network"
+      },
+      {
+        "package": "nbtscan",
+        "binary": "nbtscan",
+        "full_path": "/usr/bin/nbtscan",
+        "fn_name": "tool_nbtscan",
+        "server": "sift-network"
+      },
+      {
+        "package": "netsed",
+        "binary": "netsed",
+        "full_path": "/usr/bin/netsed",
+        "fn_name": "tool_netsed",
+        "server": "sift-network"
+      },
+      {
+        "package": "netwox",
+        "binary": "netwox",
+        "full_path": "/usr/bin/netwox",
+        "fn_name": "tool_netwox",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nfanon",
+        "full_path": "/usr/bin/nfanon",
+        "fn_name": "tool_nfanon",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nfcapd",
+        "full_path": "/usr/bin/nfcapd",
+        "fn_name": "tool_nfcapd",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nfdump",
+        "full_path": "/usr/bin/nfdump",
+        "fn_name": "tool_nfdump",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nfexpire",
+        "full_path": "/usr/bin/nfexpire",
+        "fn_name": "tool_nfexpire",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nfpcapd",
+        "full_path": "/usr/bin/nfpcapd",
+        "fn_name": "tool_nfpcapd",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nfprofile",
+        "full_path": "/usr/bin/nfprofile",
+        "fn_name": "tool_nfprofile",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nfreplay",
+        "full_path": "/usr/bin/nfreplay",
+        "fn_name": "tool_nfreplay",
+        "server": "sift-network"
+      },
+      {
+        "package": "nfdump",
+        "binary": "nftrack",
+        "full_path": "/usr/bin/nftrack",
+        "fn_name": "tool_nftrack",
+        "server": "sift-network"
+      },
+      {
+        "package": "ngrep",
+        "binary": "ngrep",
+        "full_path": "/usr/bin/ngrep",
+        "fn_name": "tool_ngrep",
+        "server": "sift-network"
+      },
+      {
+        "package": "nikto",
+        "binary": "nikto",
+        "full_path": "/usr/bin/nikto",
+        "fn_name": "tool_nikto",
+        "server": "sift-network"
+      },
+      {
+        "package": "p0f",
+        "binary": "p0f",
+        "full_path": "/usr/sbin/p0f",
+        "fn_name": "tool_p0f",
+        "server": "sift-network"
+      },
+      {
+        "package": "socat",
+        "binary": "filan",
+        "full_path": "/usr/bin/filan",
+        "fn_name": "tool_filan",
+        "server": "sift-network"
+      },
+      {
+        "package": "socat",
+        "binary": "procan",
+        "full_path": "/usr/bin/procan",
+        "fn_name": "tool_procan",
+        "server": "sift-network"
+      },
+      {
+        "package": "socat",
+        "binary": "socat",
+        "full_path": "/usr/bin/socat",
+        "fn_name": "tool_socat",
+        "server": "sift-network"
+      },
+      {
+        "package": "ssldump",
+        "binary": "ssldump",
+        "full_path": "/usr/sbin/ssldump",
+        "fn_name": "tool_ssldump",
+        "server": "sift-network"
+      },
+      {
+        "package": "sslsniff",
+        "binary": "sslsniff",
+        "full_path": "/usr/bin/sslsniff",
+        "fn_name": "tool_sslsniff",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpflow",
+        "binary": "tcpflow",
+        "full_path": "/usr/bin/tcpflow",
+        "fn_name": "tool_tcpflow",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpick",
+        "binary": "tcpick",
+        "full_path": "/usr/sbin/tcpick",
+        "fn_name": "tool_tcpick",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpreplay",
+        "binary": "tcpbridge",
+        "full_path": "/usr/bin/tcpbridge",
+        "fn_name": "tool_tcpbridge",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpreplay",
+        "binary": "tcpcapinfo",
+        "full_path": "/usr/bin/tcpcapinfo",
+        "fn_name": "tool_tcpcapinfo",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpreplay",
+        "binary": "tcpliveplay",
+        "full_path": "/usr/bin/tcpliveplay",
+        "fn_name": "tool_tcpliveplay",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpreplay",
+        "binary": "tcpprep",
+        "full_path": "/usr/bin/tcpprep",
+        "fn_name": "tool_tcpprep",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpreplay",
+        "binary": "tcpreplay",
+        "full_path": "/usr/bin/tcpreplay",
+        "fn_name": "tool_tcpreplay",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpreplay",
+        "binary": "tcpreplay-edit",
+        "full_path": "/usr/bin/tcpreplay-edit",
+        "fn_name": "tool_tcpreplay_edit",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpreplay",
+        "binary": "tcprewrite",
+        "full_path": "/usr/bin/tcprewrite",
+        "fn_name": "tool_tcprewrite",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpslice",
+        "binary": "tcpslice",
+        "full_path": "/usr/bin/tcpslice",
+        "fn_name": "tool_tcpslice",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpstat",
+        "binary": "tcpprof",
+        "full_path": "/usr/bin/tcpprof",
+        "fn_name": "tool_tcpprof",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpstat",
+        "binary": "tcpstat",
+        "full_path": "/usr/bin/tcpstat",
+        "fn_name": "tool_tcpstat",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcptrace",
+        "binary": "tcptrace",
+        "full_path": "/usr/bin/tcptrace",
+        "fn_name": "tool_tcptrace",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcptrace",
+        "binary": "xpl2gpl",
+        "full_path": "/usr/bin/xpl2gpl",
+        "fn_name": "tool_xpl2gpl",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcptrack",
+        "binary": "tcptrack",
+        "full_path": "/usr/bin/tcptrack",
+        "fn_name": "tool_tcptrack",
+        "server": "sift-network"
+      },
+      {
+        "package": "tcpxtract",
+        "binary": "tcpxtract",
+        "full_path": "/usr/bin/tcpxtract",
+        "fn_name": "tool_tcpxtract",
+        "server": "sift-network"
+      }
+    ],
+    "windows": [
+      {
+        "package": "cabextract",
+        "binary": "cabextract",
+        "full_path": "/usr/bin/cabextract",
+        "fn_name": "tool_cabextract",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libesedb-tools",
+        "binary": "esedbexport",
+        "full_path": "/usr/bin/esedbexport",
+        "fn_name": "tool_esedbexport",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libesedb-tools",
+        "binary": "esedbinfo",
+        "full_path": "/usr/bin/esedbinfo",
+        "fn_name": "tool_esedbinfo",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libevt-tools",
+        "binary": "evtexport",
+        "full_path": "/usr/bin/evtexport",
+        "fn_name": "tool_evtexport",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libevt-tools",
+        "binary": "evtinfo",
+        "full_path": "/usr/bin/evtinfo",
+        "fn_name": "tool_evtinfo",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libevtx-tools",
+        "binary": "evtxexport",
+        "full_path": "/usr/bin/evtxexport",
+        "fn_name": "tool_evtxexport",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libevtx-tools",
+        "binary": "evtxinfo",
+        "full_path": "/usr/bin/evtxinfo",
+        "fn_name": "tool_evtxinfo",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libregf-tools",
+        "binary": "regfexport",
+        "full_path": "/usr/bin/regfexport",
+        "fn_name": "tool_regfexport",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libregf-tools",
+        "binary": "regfinfo",
+        "full_path": "/usr/bin/regfinfo",
+        "fn_name": "tool_regfinfo",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libregf-tools",
+        "binary": "regfmount",
+        "full_path": "/usr/bin/regfmount",
+        "fn_name": "tool_regfmount",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libvshadow-tools",
+        "binary": "vshadowdebug",
+        "full_path": "/usr/bin/vshadowdebug",
+        "fn_name": "tool_vshadowdebug",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libvshadow-tools",
+        "binary": "vshadowinfo",
+        "full_path": "/usr/bin/vshadowinfo",
+        "fn_name": "tool_vshadowinfo",
+        "server": "sift-windows"
+      },
+      {
+        "package": "libvshadow-tools",
+        "binary": "vshadowmount",
+        "full_path": "/usr/bin/vshadowmount",
+        "fn_name": "tool_vshadowmount",
+        "server": "sift-windows"
+      },
+      {
+        "package": "pff-tools",
+        "binary": "pffexport",
+        "full_path": "/usr/bin/pffexport",
+        "fn_name": "tool_pffexport",
+        "server": "sift-windows"
+      },
+      {
+        "package": "pff-tools",
+        "binary": "pffinfo",
+        "full_path": "/usr/bin/pffinfo",
+        "fn_name": "tool_pffinfo",
+        "server": "sift-windows"
+      },
+      {
+        "package": "plaso-tools",
+        "binary": "image_export.py",
+        "full_path": "/usr/bin/image_export.py",
+        "fn_name": "tool_image_export_py",
+        "server": "sift-windows"
+      },
+      {
+        "package": "plaso-tools",
+        "binary": "log2timeline.py",
+        "full_path": "/usr/bin/log2timeline.py",
+        "fn_name": "tool_log2timeline_py",
+        "server": "sift-windows"
+      },
+      {
+        "package": "plaso-tools",
+        "binary": "pinfo.py",
+        "full_path": "/usr/bin/pinfo.py",
+        "fn_name": "tool_pinfo_py",
+        "server": "sift-windows"
+      },
+      {
+        "package": "plaso-tools",
+        "binary": "psort.py",
+        "full_path": "/usr/bin/psort.py",
+        "fn_name": "tool_psort_py",
+        "server": "sift-windows"
+      },
+      {
+        "package": "plaso-tools",
+        "binary": "psteal.py",
+        "full_path": "/usr/bin/psteal.py",
+        "fn_name": "tool_psteal_py",
+        "server": "sift-windows"
+      },
+      {
+        "package": "powershell",
+        "binary": "pwsh",
+        "full_path": "/usr/bin/pwsh",
+        "fn_name": "tool_pwsh",
+        "server": "sift-windows"
+      },
+      {
+        "package": "pst-utils",
+        "binary": "lspst",
+        "full_path": "/usr/bin/lspst",
+        "fn_name": "tool_lspst",
+        "server": "sift-windows"
+      },
+      {
+        "package": "pst-utils",
+        "binary": "nick2ldif",
+        "full_path": "/usr/bin/nick2ldif",
+        "fn_name": "tool_nick2ldif",
+        "server": "sift-windows"
+      },
+      {
+        "package": "pst-utils",
+        "binary": "pst2dii",
+        "full_path": "/usr/bin/pst2dii",
+        "fn_name": "tool_pst2dii",
+        "server": "sift-windows"
+      },
+      {
+        "package": "pst-utils",
+        "binary": "pst2ldif",
+        "full_path": "/usr/bin/pst2ldif",
+        "fn_name": "tool_pst2ldif",
+        "server": "sift-windows"
+      },
+      {
+        "package": "pst-utils",
+        "binary": "readpst",
+        "full_path": "/usr/bin/readpst",
+        "fn_name": "tool_readpst",
+        "server": "sift-windows"
+      },
+      {
+        "package": "samdump2",
+        "binary": "samdump2",
+        "full_path": "/usr/bin/samdump2",
+        "fn_name": "tool_samdump2",
+        "server": "sift-windows"
+      }
+    ],
+    "crypto": [
+      {
+        "package": "ccrypt",
+        "binary": "ccguess",
+        "full_path": "/usr/bin/ccguess",
+        "fn_name": "tool_ccguess",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "ccrypt",
+        "binary": "ccrypt",
+        "full_path": "/usr/bin/ccrypt",
+        "fn_name": "tool_ccrypt",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "ccrypt",
+        "binary": "ccat",
+        "full_path": "/usr/bin/ccat",
+        "fn_name": "tool_ccat",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "ccrypt",
+        "binary": "ccdecrypt",
+        "full_path": "/usr/bin/ccdecrypt",
+        "fn_name": "tool_ccdecrypt",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "ccrypt",
+        "binary": "ccencrypt",
+        "full_path": "/usr/bin/ccencrypt",
+        "fn_name": "tool_ccencrypt",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "cmospwd",
+        "binary": "cmospwd",
+        "full_path": "/usr/sbin/cmospwd",
+        "fn_name": "tool_cmospwd",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "cryptsetup",
+        "binary": "cryptdisks_start",
+        "full_path": "/sbin/cryptdisks_start",
+        "fn_name": "tool_cryptdisks_start",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "cryptsetup",
+        "binary": "cryptdisks_stop",
+        "full_path": "/sbin/cryptdisks_stop",
+        "fn_name": "tool_cryptdisks_stop",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "cryptsetup",
+        "binary": "luksformat",
+        "full_path": "/usr/sbin/luksformat",
+        "fn_name": "tool_luksformat",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "dislocker",
+        "binary": "dislocker-bek",
+        "full_path": "/usr/bin/dislocker-bek",
+        "fn_name": "tool_dislocker_bek",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "dislocker",
+        "binary": "dislocker-file",
+        "full_path": "/usr/bin/dislocker-file",
+        "fn_name": "tool_dislocker_file",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "dislocker",
+        "binary": "dislocker-find",
+        "full_path": "/usr/bin/dislocker-find",
+        "fn_name": "tool_dislocker_find",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "dislocker",
+        "binary": "dislocker-fuse",
+        "full_path": "/usr/bin/dislocker-fuse",
+        "fn_name": "tool_dislocker_fuse",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "dislocker",
+        "binary": "dislocker-metadata",
+        "full_path": "/usr/bin/dislocker-metadata",
+        "fn_name": "tool_dislocker_metadata",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "dislocker",
+        "binary": "dislocker",
+        "full_path": "/usr/bin/dislocker",
+        "fn_name": "tool_dislocker",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "hydra",
+        "binary": "dpl4hydra",
+        "full_path": "/usr/bin/dpl4hydra",
+        "fn_name": "tool_dpl4hydra",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "hydra",
+        "binary": "hydra",
+        "full_path": "/usr/bin/hydra",
+        "fn_name": "tool_hydra",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "hydra",
+        "binary": "hydra-wizard",
+        "full_path": "/usr/bin/hydra-wizard",
+        "fn_name": "tool_hydra_wizard",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "hydra",
+        "binary": "pw-inspector",
+        "full_path": "/usr/bin/pw-inspector",
+        "fn_name": "tool_pw_inspector",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "libfvde-tools",
+        "binary": "fvdeinfo",
+        "full_path": "/usr/bin/fvdeinfo",
+        "fn_name": "tool_fvdeinfo",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "libfvde-tools",
+        "binary": "fvdemount",
+        "full_path": "/usr/bin/fvdemount",
+        "fn_name": "tool_fvdemount",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "libfvde-tools",
+        "binary": "fvdewipekey",
+        "full_path": "/usr/bin/fvdewipekey",
+        "fn_name": "tool_fvdewipekey",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "ophcrack",
+        "binary": "ophcrack",
+        "full_path": "/usr/bin/ophcrack",
+        "fn_name": "tool_ophcrack",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "ophcrack-cli",
+        "binary": "ophcrack-cli",
+        "full_path": "/usr/bin/ophcrack-cli",
+        "fn_name": "tool_ophcrack_cli",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "outguess",
+        "binary": "histogram",
+        "full_path": "/usr/bin/histogram",
+        "fn_name": "tool_histogram",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "outguess",
+        "binary": "outguess",
+        "full_path": "/usr/bin/outguess",
+        "fn_name": "tool_outguess",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "outguess",
+        "binary": "seek_script",
+        "full_path": "/usr/bin/seek_script",
+        "fn_name": "tool_seek_script",
+        "server": "sift-crypto"
+      },
+      {
+        "package": "outguess",
+        "binary": "outguess-extract",
+        "full_path": "/usr/bin/outguess-extract",
+        "fn_name": "tool_outguess_extract",
+        "server": "sift-crypto"
+      }
+    ],
+    "malware": [
+      {
+        "package": "clamav",
+        "binary": "clambc",
+        "full_path": "/usr/bin/clambc",
+        "fn_name": "tool_clambc",
+        "server": "sift-malware"
+      },
+      {
+        "package": "clamav",
+        "binary": "clamscan",
+        "full_path": "/usr/bin/clamscan",
+        "fn_name": "tool_clamscan",
+        "server": "sift-malware"
+      },
+      {
+        "package": "clamav",
+        "binary": "clamsubmit",
+        "full_path": "/usr/bin/clamsubmit",
+        "fn_name": "tool_clamsubmit",
+        "server": "sift-malware"
+      },
+      {
+        "package": "clamav",
+        "binary": "sigtool",
+        "full_path": "/usr/bin/sigtool",
+        "fn_name": "tool_sigtool",
+        "server": "sift-malware"
+      },
+      {
+        "package": "gdb",
+        "binary": "gcore",
+        "full_path": "/usr/bin/gcore",
+        "fn_name": "tool_gcore",
+        "server": "sift-malware"
+      },
+      {
+        "package": "gdb",
+        "binary": "gdb",
+        "full_path": "/usr/bin/gdb",
+        "fn_name": "tool_gdb",
+        "server": "sift-malware"
+      },
+      {
+        "package": "gdb",
+        "binary": "gdb-add-index",
+        "full_path": "/usr/bin/gdb-add-index",
+        "fn_name": "tool_gdb_add_index",
+        "server": "sift-malware"
+      },
+      {
+        "package": "gdb",
+        "binary": "gdbtui",
+        "full_path": "/usr/bin/gdbtui",
+        "fn_name": "tool_gdbtui",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "ofs2rva",
+        "full_path": "/usr/bin/ofs2rva",
+        "fn_name": "tool_ofs2rva",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "pedis",
+        "full_path": "/usr/bin/pedis",
+        "fn_name": "tool_pedis",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "pehash",
+        "full_path": "/usr/bin/pehash",
+        "fn_name": "tool_pehash",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "peldd",
+        "full_path": "/usr/bin/peldd",
+        "fn_name": "tool_peldd",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "pepack",
+        "full_path": "/usr/bin/pepack",
+        "fn_name": "tool_pepack",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "peres",
+        "full_path": "/usr/bin/peres",
+        "fn_name": "tool_peres",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "pescan",
+        "full_path": "/usr/bin/pescan",
+        "fn_name": "tool_pescan",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "pesec",
+        "full_path": "/usr/bin/pesec",
+        "fn_name": "tool_pesec",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "pestr",
+        "full_path": "/usr/bin/pestr",
+        "fn_name": "tool_pestr",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "readpe",
+        "full_path": "/usr/bin/readpe",
+        "fn_name": "tool_readpe",
+        "server": "sift-malware"
+      },
+      {
+        "package": "pev",
+        "binary": "rva2ofs",
+        "full_path": "/usr/bin/rva2ofs",
+        "fn_name": "tool_rva2ofs",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "radare2",
+        "full_path": "/usr/bin/radare2",
+        "fn_name": "tool_radare2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "rasm2",
+        "full_path": "/usr/bin/rasm2",
+        "fn_name": "tool_rasm2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "radiff2",
+        "full_path": "/usr/bin/radiff2",
+        "fn_name": "tool_radiff2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "r2agent",
+        "full_path": "/usr/bin/r2agent",
+        "fn_name": "tool_r2agent",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "rax2",
+        "full_path": "/usr/bin/rax2",
+        "fn_name": "tool_rax2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "rasign2",
+        "full_path": "/usr/bin/rasign2",
+        "fn_name": "tool_rasign2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "rafind2",
+        "full_path": "/usr/bin/rafind2",
+        "fn_name": "tool_rafind2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "rahash2",
+        "full_path": "/usr/bin/rahash2",
+        "fn_name": "tool_rahash2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "rabin2",
+        "full_path": "/usr/bin/rabin2",
+        "fn_name": "tool_rabin2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "r2pm",
+        "full_path": "/usr/bin/r2pm",
+        "fn_name": "tool_r2pm",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "ragg2",
+        "full_path": "/usr/bin/ragg2",
+        "fn_name": "tool_ragg2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "r2r",
+        "full_path": "/usr/bin/r2r",
+        "fn_name": "tool_r2r",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "rarun2",
+        "full_path": "/usr/bin/rarun2",
+        "fn_name": "tool_rarun2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "ravc2",
+        "full_path": "/usr/bin/ravc2",
+        "fn_name": "tool_ravc2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "r2p",
+        "full_path": "/usr/bin/r2p",
+        "fn_name": "tool_r2p",
+        "server": "sift-malware"
+      },
+      {
+        "package": "radare2",
+        "binary": "r2",
+        "full_path": "/usr/bin/r2",
+        "fn_name": "tool_r2",
+        "server": "sift-malware"
+      },
+      {
+        "package": "upx-ucl",
+        "binary": "upx-ucl",
+        "full_path": "/usr/bin/upx-ucl",
+        "fn_name": "tool_upx_ucl",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "wine-stable",
+        "full_path": "/usr/bin/wine-stable",
+        "fn_name": "tool_wine_stable",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "regedit-stable",
+        "full_path": "/usr/bin/regedit-stable",
+        "fn_name": "tool_regedit_stable",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "regsvr32-stable",
+        "full_path": "/usr/bin/regsvr32-stable",
+        "fn_name": "tool_regsvr32_stable",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "wineboot-stable",
+        "full_path": "/usr/bin/wineboot-stable",
+        "fn_name": "tool_wineboot_stable",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "winecfg-stable",
+        "full_path": "/usr/bin/winecfg-stable",
+        "fn_name": "tool_winecfg_stable",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "winedbg-stable",
+        "full_path": "/usr/bin/winedbg-stable",
+        "fn_name": "tool_winedbg_stable",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "winepath-stable",
+        "full_path": "/usr/bin/winepath-stable",
+        "fn_name": "tool_winepath_stable",
+        "server": "sift-malware"
+      },
+      {
+        "package": "wine",
+        "binary": "wineserver-stable",
+        "full_path": "/usr/bin/wineserver-stable",
+        "fn_name": "tool_wineserver_stable",
+        "server": "sift-malware"
+      }
+    ],
+    "hashing": [
+      {
+        "package": "hashdeep",
+        "binary": "hashdeep",
+        "full_path": "/usr/bin/hashdeep",
+        "fn_name": "tool_hashdeep",
+        "server": "sift-hashing"
+      },
+      {
+        "package": "hashdeep",
+        "binary": "md5deep",
+        "full_path": "/usr/bin/md5deep",
+        "fn_name": "tool_md5deep",
+        "server": "sift-hashing"
+      },
+      {
+        "package": "hashdeep",
+        "binary": "sha1deep",
+        "full_path": "/usr/bin/sha1deep",
+        "fn_name": "tool_sha1deep",
+        "server": "sift-hashing"
+      },
+      {
+        "package": "hashdeep",
+        "binary": "sha256deep",
+        "full_path": "/usr/bin/sha256deep",
+        "fn_name": "tool_sha256deep",
+        "server": "sift-hashing"
+      },
+      {
+        "package": "hashdeep",
+        "binary": "tigerdeep",
+        "full_path": "/usr/bin/tigerdeep",
+        "fn_name": "tool_tigerdeep",
+        "server": "sift-hashing"
+      },
+      {
+        "package": "hashdeep",
+        "binary": "whirlpooldeep",
+        "full_path": "/usr/bin/whirlpooldeep",
+        "fn_name": "tool_whirlpooldeep",
+        "server": "sift-hashing"
+      },
+      {
+        "package": "ssdeep",
+        "binary": "ssdeep",
+        "full_path": "/usr/bin/ssdeep",
+        "fn_name": "tool_ssdeep",
+        "server": "sift-hashing"
+      }
+    ]
+  },
+  "server_counts": {
+    "sift-memory": 5,
+    "sift-disk": 180,
+    "sift-network": 96,
+    "sift-windows": 27,
+    "sift-crypto": 28,
+    "sift-malware": 44,
+    "sift-hashing": 7
+  },
+  "skipped": {
+    "INFRA": [
+      "dbus-x11",
+      "apache2",
+      "at",
+      "build-essential",
+      "curl",
+      "default-jre",
+      "epic5",
+      "flex",
+      "gawk",
+      "gcc",
+      "graphviz",
+      "htop",
+      "ipython3",
+      "libparse-win32registry-perl",
+      "netpbm",
+      "net-tools",
+      "okular",
+      "onboard",
+      "open-iscsi",
+      "openjdk",
+      "orca",
+      "pdftk-java",
+      "perl",
+      "pkg-config",
+      "pv",
+      "python3",
+      "python3-dev",
+      "python3-pip",
+      "python3-pyqt5",
+      "python3-setuptools",
+      "python3-setuptools-rust",
+      "python3-tk",
+      "python3-virtualenv",
+      "python3-wheel",
+      "qemu",
+      "samba",
+      "silversearcher-ag",
+      "stunnel4",
+      "tcl",
+      "tofrodos",
+      "vim",
+      "virtuoso-minimal",
+      "winbind",
+      "xdot"
+    ],
+    "NOT_INSTALLED": [
+      "android-sdk-platform-tools",
+      "aws-cli",
+      "docker",
+      "exfat-extras",
+      "netcat",
+      "python-flowgrep",
+      "unrar",
+      "wireshark"
+    ],
+    "TIMEOUT": [
+      "bless",
+      "kdiff3",
+      "magnus"
+    ],
+    "LIBRARY": [
+      "blt",
+      "libafflib-dev",
+      "libafflib",
+      "libbcprov-java",
+      "libbde",
+      "libcommons-lang3-java",
+      "libdatetime-perl",
+      "libesedb",
+      "libevt",
+      "libevtx",
+      "libewf2",
+      "libewf-dev",
+      "libext2fs2",
+      "libffi-dev",
+      "libfuse-dev",
+      "libfvde",
+      "liblightgrep",
+      "libmsiecf",
+      "libncurses",
+      "libnet1",
+      "libolecf",
+      "libpff",
+      "libpff-dev",
+      "libregf",
+      "libregf-dev",
+      "libssl-dev",
+      "libtext-csv-perl",
+      "libvmdk",
+      "libvshadow",
+      "libvshadow-dev",
+      "libxml2-dev",
+      "libxslt-dev",
+      "phonon"
+    ],
+    "DISPLAY": [
+      "chromium-browser",
+      "ghex",
+      "gthumb",
+      "transmission",
+      "unity-control-center",
+      "zenity"
+    ],
+    "IMPORTABLE": [
+      "libewf-python3",
+      "libregf-python3",
+      "libvshadow-python3",
+      "python3-dfvfs",
+      "python3-fuse",
+      "python3-pefile",
+      "python3-pypff",
+      "python3-redis",
+      "python3-xlsxwriter",
+      "python3-yara",
+      "python3-debian"
+    ]
+  },
+  "no_fit": [
+    "g",
+    "hexedit",
+    "hydra-gtk"
+  ]
+}

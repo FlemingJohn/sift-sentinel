@@ -1,0 +1,2 @@
+server	binary	status	why
+malware	msiexec-stable	HANG	all probes timed out
