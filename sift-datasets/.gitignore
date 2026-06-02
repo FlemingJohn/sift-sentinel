@@ -1,0 +1,14 @@
+# sift-datasets — forensic evidence images (fetched out-of-band)
+#
+# Disk/memory images run to many GB and exceed GitHub's 100MB file limit,
+# so ignore everything here by default. Keep the folder, this file, and any
+# docs/manifests so the dataset layout stays documented in the repo.
+
+*
+
+!.gitignore
+!.gitkeep
+!README*
+!*.md
+!manifest*.json
+!*.sha256
