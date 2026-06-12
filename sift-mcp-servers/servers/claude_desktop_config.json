@@ -2,39 +2,39 @@
   "mcpServers": {
     "sift-crypto": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_crypto.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_crypto.py"]
     },
     "sift-disk": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_disk.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_disk.py"]
     },
     "sift-hashing": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_hashing.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_hashing.py"]
     },
     "sift-malware": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_malware.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_malware.py"]
     },
     "sift-memory": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_memory.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_memory.py"]
     },
     "sift-network": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_network.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_network.py"]
     },
     "sift-windows": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_windows.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_windows.py"]
     },
     "sift-attack": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_attack.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_attack.py"]
     },
     "sift-defend": {
       "command": "wsl.exe",
-      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/servers/sift_defend.py"]
+      "args": ["-d", "Ubuntu-22.04", "--", "python3", "/mnt/c/Users/FlemingJohn/Downloads/SIFT - Sentinel/sift-mcp-servers/servers/sift_defend.py"]
     }
   }
 }
