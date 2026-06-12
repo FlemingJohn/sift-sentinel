@@ -1,96 +1,118 @@
 ```
-  ███████╗██╗███████╗████████╗    ███████╗███████╗███╗   ██╗████████╗██╗███╗   ██╗███████╗██╗
-  ██╔════╝██║██╔════╝╚══██╔══╝    ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██║████╗  ██║██╔════╝██║
-  █████╗  ██║█████╗     ██║       ███████╗█████╗  ██╔██╗ ██║   ██║   ██║██╔██╗ ██║█████╗  ██║
-  ██╔══╝  ██║██╔══╝     ██║       ╚════██║██╔══╝  ██║╚██╗██║   ██║   ██║██║╚██╗██║██╔══╝  ██║
-  ███████╗██║██║        ██║       ███████║███████╗██║ ╚████║   ██║   ██║██║ ╚████║███████╗██║
-  ╚══════╝╚═╝╚═╝        ╚═╝       ╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝
-
-                     SENTINEL
-                Intelligence Forensic Tools Platform
+   ███████╗██╗███████╗████████╗
+   ██╔════╝██║██╔════╝╚══██╔══╝     S E N T I N E L
+   ███████╗██║█████╗     ██║        Sentinel Intelligence Forensic Tools
+   ╚════██║██║██╔══╝     ██║        Claude Agent SDK · Model Context Protocol
+   ███████║██║██║        ██║
+   ╚══════╝╚═╝╚═╝        ╚═╝
 ```
 
-**Powered by Model Context Protocol (MCP) · 400+ Forensic Tools · Enterprise-Grade Analysis**
+**Powered by the Claude Agent SDK · Model Context Protocol · 400+ Forensic Tools**
 
 ---
 
 ## Status & Badges
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-0078D4?style=flat-square&logo=python&logoColor=white)
-![Framework](https://img.shields.io/badge/Framework-LangGraph-412991?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.11%2B-0078D4?style=flat-square&logo=python&logoColor=white)
+![Framework](https://img.shields.io/badge/Framework-Claude%20Agent%20SDK-D97757?style=flat-square)
 ![MCP](https://img.shields.io/badge/Protocol-MCP%202024--11--05-0066CC?style=flat-square)
 ![Tools](https://img.shields.io/badge/Tools-400%2B-15B358?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Production-28A745?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-28A745?style=flat-square)
 ![License](https://img.shields.io/badge/License-See%20Components-181717?style=flat-square)
 
 ---
 
 ## Overview
 
-SIFT is an advanced digital forensics and incident response (DFIR) platform that combines AI agents with 400+ forensic analysis tools. It leverages the Model Context Protocol to enable Claude AI to orchestrate complex incident investigations across multiple forensic domains including memory analysis, disk forensics, network investigation, malware analysis, Windows forensics, and cryptographic assessment.
+SIFT is a digital forensics and incident response platform that pairs Claude with 400+ forensic analysis tools. A deterministic Python controller orchestrates a chain of specialist agents, each built on the Claude Agent SDK, that drive the Model Context Protocol servers wrapping industry-standard DFIR binaries. The platform covers disk forensics, memory analysis, network investigation, Windows artifacts, static malware analysis, reverse engineering, and cryptographic assessment, and maps every finding to MITRE ATT&CK and D3FEND.
+
+Evidence is handled read-only. Every tool invocation is hashed into a chain of custody, and two safety gates block the investigation from proceeding on unverified evidence or unattributed findings.
 
 ---
 
 ## Architecture
 
-SIFT is composed of four primary components:
+SIFT is composed of four components. The agent controller drives the MCP servers, which expose the forensic toolchain over the evidence; the TUI observes the controller's audit stream.
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                        SIFT Investigation Framework                             │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                 │
-│  ┌────────────────────────────────────────────────────────────────────────┐   │
-│  │  sift-agent (LangGraph Pipeline)                                       │   │
-│  │  ✦ Investigation Orchestration                                        │   │
-│  │  ✦ Multi-stage Forensic Workflow                                      │   │
-│  │  ✦ Evidence & Finding Management                                      │   │
-│  └────────────────────────────────────────────────────────────────────────┘   │
-│                                         ▼                                       │
-│  ┌────────────────────────────────────────────────────────────────────────┐   │
-│  │  MCP Servers (Model Context Protocol)                                 │   │
-│  │                                                                        │   │
-│  │  attack(8)  defend(5)  disk(180)  windows(27)  network(96)           │   │
-│  │  memory(5)  hashing(7)  malware(44)  crypto(28)                      │   │
-│  │                                                                        │   │
-│  │  400+ Forensic Tools & Binaries                                       │   │
-│  └────────────────────────────────────────────────────────────────────────┘   │
-│                                         ▼                                       │
-│  ┌────────────────────────────────────────────────────────────────────────┐   │
-│  │  Evidence & Analysis Layer                                            │   │
-│  │  ✦ Disk Forensics    ✦ Memory Analysis    ✦ Network Inspection       │   │
-│  │  ✦ Windows Forensics  ✦ Malware Analysis  ✦ Cryptographic Assessment │   │
-│  └────────────────────────────────────────────────────────────────────────┘   │
-│                                         ▼                                       │
-│  ┌────────────────────────────────────────────────────────────────────────┐   │
-│  │  sift-tui (Live Investigation Dashboard)                             │   │
-│  │  ✦ Real-time Progress Visualization                                  │   │
-│  │  ✦ Agent Activity Monitoring                                         │   │
-│  │  ✦ Findings & Evidence Tracking                                      │   │
-│  └────────────────────────────────────────────────────────────────────────┘   │
-│                                                                                 │
-└─────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    CLI["sift-agent CLI<br/>main.py"] --> CONTROLLER["Investigation Controller<br/>deterministic orchestrator"]
+    CONTROLLER --> SDK["Claude Agent SDK<br/>one isolated query per specialist"]
+    SDK --> SERVERS["9 MCP Servers<br/>launched over WSL stdio"]
+    SERVERS --> TOOLS["400+ Forensic Binaries"]
+    TOOLS --> EVIDENCE[("Forensic Evidence<br/>read-only")]
+    CONTROLLER -. "audit events" .-> TUI["sift-tui<br/>live dashboard"]
 ```
 
-### Components
+### Investigation pipeline
 
-#### 1. sift-agent
+The controller runs a fixed, auditable sequence. Two gates guard the transitions: the hash gate requires every evidence item to be hashed before any analysis tool runs, and the attribution gate requires every finding to carry an ATT&CK technique before a report is written.
 
-The core AI-driven investigation engine built with LangGraph. Implements an agentic workflow that:
-- Orchestrates evidence acquisition and analysis
-- Coordinates across multiple forensic domains
-- Maintains investigation state and context
-- Routes analysis tasks to specialized workers
-- Provides comprehensive forensic findings and attribution
+```mermaid
+flowchart LR
+    ACQUIRE["acquire"] --> HASH["hash"]
+    HASH --> GATE1{"hash gate"}
+    GATE1 -- ok --> ANALYZE["analyze"]
+    GATE1 -- fail --> HALT1["halt"]
+    ANALYZE --> ATTRIBUTE["attribute"]
+    ATTRIBUTE --> GATE2{"attribution gate"}
+    GATE2 -- ok --> REPORT["report"]
+    GATE2 -- fail --> HALT2["halt"]
+```
 
-**Key Files:**
-- `run.py` — CLI entry point
-- `graph.py` — LangGraph pipeline definition
-- `state.py` — Investigation state management
-- `routers.py` — Conditional routing logic
-- `workers/` — Domain-specific forensic analyzers
+### Specialist routing
 
-#### 2. sift-mcp-servers
+The analyze phase selects specialists from the evidence profile and re-evaluates after each pass, so candidate files surfaced by the filesystem and carver agents pull in the static malware and reversing agents. The attribute phase always runs the two mapping agents.
+
+```mermaid
+flowchart TD
+    ANALYZE["analyze phase"] --> FILESYSTEM["filesystem"]
+    ANALYZE --> CARVER["carver"]
+    ANALYZE --> WINDOWS["windows"]
+    ANALYZE --> MEMORY["memory"]
+    ANALYZE --> NETWORK["network"]
+    ANALYZE --> CRYPTO["crypto"]
+    FILESYSTEM --> MALWARE["malware_static"]
+    CARVER --> MALWARE
+    MALWARE --> REVERSING["reversing"]
+    REVERSING --> ATTRIBUTE["attribute phase"]
+    ATTRIBUTE --> ATTACKMAP["attack_map"]
+    ATTACKMAP --> DEFENSEMAP["defense_map"]
+```
+
+### Safety model
+
+| Control | Mechanism |
+|---------|-----------|
+| Evidence integrity | Hash gate predicate in the controller plus a PreToolUse hook that denies every analysis tool until evidence is hashed |
+| Tool scope | Each specialist runs in `dontAsk` permission mode with a namespaced `allowed_tools` list, so only its own forensic tools are callable |
+| Chain of custody | Every tool result is hashed into a per-evidence custody log |
+| Attribution | Attribution gate predicate blocks the report until findings carry ATT&CK techniques |
+| Budget | Per-specialist turn and spend ceilings |
+
+---
+
+## Components
+
+### 1. sift-agent
+
+The investigation engine. The `agent_sdk` package implements a deterministic controller that runs each specialist as an isolated Claude Agent SDK `query()`, keeping the pipeline order provable for chain of custody.
+
+**Key modules (`sift-agent/agent_sdk/`):**
+- `main.py` — CLI entry point
+- `investigation_controller.py` — phase orchestration
+- `specialists.py` — specialist definitions and prompts
+- `specialist_runner.py` — SDK options, hooks, and the query loop
+- `mcp_servers.py` — MCP server launch configuration and tool namespacing
+- `gates.py` / `hooks.py` — safety gates and the PreToolUse deny hook
+- `case_state.py` — investigation state and chain of custody
+- `routing.py` — specialist selection
+- `report_synthesizer.py` — finding validation and report generation
+- `audit_logger.py` — JSONL audit trail and cost accounting
+
+The earlier LangGraph implementation has been removed; the Agent SDK package is the sole engine.
+
+### 2. sift-mcp-servers
 
 Nine independent MCP servers exposing 400+ forensic tools:
 
@@ -103,154 +125,108 @@ Nine independent MCP servers exposing 400+ forensic tools:
 | sift-network | 96 | Network analysis and traffic inspection |
 | sift-memory | 5 | Memory forensics tools |
 | sift-hashing | 7 | Cryptographic hashing utilities |
-| sift-malware | 44 | Malware analysis tools |
+| sift-malware | 44 | Static malware analysis tools |
 | sift-crypto | 28 | Cryptographic assessment tools |
 
-Each server wraps industry-standard forensic binaries and academic tools with a standardized JSON response envelope.
+Each server wraps industry-standard forensic binaries with a standardized JSON response envelope.
 
-#### 3. sift-tui
+### 3. sift-tui
 
-A live investigation dashboard built with Textual (Python TUI framework). Provides:
-- Real-time investigation progress visualization
-- Multi-panel layout showing agents, findings, and evidence integrity
-- Tool execution stream monitoring
-- Cost and token usage tracking
-- Integration with sift-agent graph execution
+A live investigation dashboard built with Textual. Its mock mode replays a demo session with no dependencies. Its live mode is currently wired to the removed LangGraph engine and is being reconnected to the `agent_sdk` controller; use mock mode until that lands.
 
-#### 4. sift-documents
+### 4. sift-documents
 
-Comprehensive documentation including:
-- MCP architecture and execution flows
-- Agent design patterns and logging
-- Tool reference guides
-- Investigation workflow documentation
+Architecture notes, execution flows, logging design, and tool reference guides.
 
 ---
 
 ## Installation
 
 ### Prerequisites
-- Python 3.10+
-- WSL/Linux environment (for access to SIFT forensic binaries)
-- Virtual environment manager (venv or conda)
+- Python 3.11+
+- WSL with Ubuntu 22.04 (hosts the SIFT forensic binaries and MCP servers)
+- The Claude Code CLI, logged in, for keyless subscription auth (or an Anthropic API key)
 
 ### System Requirements
 
-```
-┌──────────────────────────────────────────────────────┐
-│  SIFT System Requirements                            │
-├──────────────────────────────────────────────────────┤
-│  Python:      3.10+                                  │
-│  Environment: WSL/Linux (Ubuntu 22.04 recommended)  │
-│  Disk Space:  100GB+ (for large forensic images)    │
-│  RAM:         8GB minimum (16GB recommended)        │
-│  CPU Cores:   4+ (for parallel tool execution)      │
-└──────────────────────────────────────────────────────┘
-```
+| Resource | Recommendation |
+|----------|----------------|
+| Python | 3.11+ |
+| Environment | WSL / Ubuntu 22.04 |
+| Disk space | 100 GB+ for large forensic images |
+| RAM | 8 GB minimum, 16 GB recommended |
+| CPU cores | 4+ for parallel tool execution |
 
-### Quick Start
+### Setup
 
-1. **Clone the repository**
-```bash
-cd SIFT\ -\ Sentinel
-```
-
-2. **Set up the virtual environment**
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
-
-3. **Install sift-agent dependencies**
+1. **Install the agent (Windows host Python)**
 ```bash
 cd sift-agent
 pip install -r requirements.txt
-cd ..
 ```
 
-4. **Install sift-mcp-servers**
+2. **Install the MCP server dependencies (inside WSL)**
 ```bash
-cd sift-mcp-servers/servers
+wsl -d Ubuntu-22.04
+cd "/mnt/c/Users/<you>/Downloads/SIFT - Sentinel/sift-mcp-servers/servers"
 pip install -e .
-cd ../..
 ```
 
-5. **Configure MCP servers** (optional for enhanced analysis)
+3. **Authenticate**
+   - Keyless: log in once with the Claude Code CLI and leave `ANTHROPIC_API_KEY` unset.
+   - API key: set `ANTHROPIC_API_KEY`.
+
+4. **Configure paths**
 ```bash
-cp sift-mcp-servers/servers/claude_desktop_config.json ~/.config/Claude/claude_desktop_config.json
+cp sift-agent/.env.example sift-agent/.env
+# edit SIFT_MCP_SERVERS_DIRECTORY and SIFT_WSL_DISTRIBUTION for your setup
 ```
 
 ---
 
 ## Usage
 
-### Investigation Workflow
+### Run an investigation
 
-```
-START
-  │
-  ├─ Acquisition ─────────────── Gather forensic evidence from target systems
-  │      │
-  ├─ Hashing ───────────────────── Compute SHA-256 hashes for integrity verification
-  │      │
-  ├─ Analysis ──────────────────── Execute forensic analysis across all domains
-  │      │                          • Disk analysis
-  │      │                          • Memory forensics
-  │      │                          • Network traffic
-  │      │                          • Malware analysis
-  │      │                          • Windows forensics
-  │      │                          • Cryptographic assessment
-  │      │
-  ├─ Attribution ──────────────── Map findings to ATT&CK techniques & threat actors
-  │      │
-  ├─ Defense ──────────────────── Generate defensive recommendations (D3FEND)
-  │      │
-  └─ Reporting ────────────────── Compile comprehensive findings & evidence chain-of-custody
-         │
-       COMPLETE
-```
-
-### CLI Investigation
+Run the controller from the `agent_sdk` directory. Evidence paths must be reachable from inside the WSL distribution.
 
 ```bash
-cd sift-agent
-python run.py --case-id incident-001 --evidence /path/to/evidence/
+cd sift-agent/agent_sdk
+python main.py --case-id incident-001 --evidence /home/you/evidence.dd
 ```
 
 **Options:**
-- `--case-id` — Unique investigation identifier
-- `--evidence` — Path to forensic evidence files
-- `--output` — Output directory for findings (default: ./results)
+- `--case-id` — unique investigation identifier
+- `--evidence` — one or more evidence file paths (WSL-accessible)
 
-### Interactive Dashboard
+Reports are written to `SIFT_REPORTS_DIRECTORY` and the audit trail to `SIFT_AUDIT_LOG_DIRECTORY`.
+
+### Quick smoke test
+
+`build_test_image.sh` creates a small ext2 image with seeded forensic artifacts so you can exercise the full pipeline without a multi-gigabyte capture.
 
 ```bash
-cd sift-tui
-python tui.py --case-id incident-001 --evidence /path/to/evidence/
+wsl -d Ubuntu-22.04 -- bash "/mnt/c/.../sift-agent/agent_sdk/build_test_image.sh"
+cd sift-agent/agent_sdk
+python main.py --case-id smoke --evidence /home/you/small_case.dd
 ```
 
-The dashboard provides real-time visualization of:
-- Investigation stages (acquire → hash → analyze → attribute → defend → complete)
-- Active forensic agents and tool execution
-- Findings and evidence integrity verification
-- Token usage and cost estimation
+### Configuration
 
-### Verification and Testing
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `SIFT_WSL_DISTRIBUTION` | `Ubuntu-22.04` | WSL distribution hosting the servers |
+| `SIFT_MCP_SERVERS_DIRECTORY` | repo path | MCP server scripts as seen inside WSL |
+| `SIFT_WORKER_MODEL` | `haiku` | Model for analysis specialists |
+| `SIFT_SUPERVISOR_MODEL` | `opus` | Model for the report narrative |
+| `SIFT_MAXIMUM_TURNS_PER_SPECIALIST` | `25` | Per-specialist turn ceiling |
+| `SIFT_MAXIMUM_BUDGET_USD` | `5.0` | Per-specialist spend ceiling |
 
-From `sift-mcp-servers/`:
+### Tests
 
 ```bash
-# Verify all 9 MCP servers load correctly
-python verify.py
-
-# Test attack and defense intelligence mappings
-python verify_attack_defend.py
-
-# Audit all forensic binaries
-python audit_tools.py
-
-# Generate performance and coverage report
-python phase5_report.py
+cd sift-agent/agent_sdk
+python test_pure_logic.py
 ```
 
 ---
@@ -259,137 +235,47 @@ python phase5_report.py
 
 ```
 SIFT - Sentinel/
-├── sift-agent/              # AI-driven investigation engine (LangGraph)
-│   ├── workers/             # Domain-specific forensic analyzers
-│   ├── graph.py             # Investigation pipeline
-│   ├── state.py             # Investigation context management
-│   └── run.py               # CLI entry point
+├── sift-agent/
+│   ├── agent_sdk/           Claude Agent SDK investigation engine
+│   ├── requirements.txt
+│   └── pyproject.toml
 │
-├── sift-mcp-servers/        # MCP server implementations (400+ tools)
-│   ├── servers/             # 9 server implementations
-│   ├── verify.py            # Server verification suite
-│   └── logs/                # Tool execution logs (JSONL)
+├── sift-mcp-servers/
+│   └── servers/             9 MCP server implementations (400+ tools)
 │
-├── sift-tui/                # Terminal UI dashboard
-│   ├── tui.py               # Textual UI implementation
-│   └── mock_run.py          # Demo mode
-│
-├── sift-documents/          # Comprehensive documentation
-│   ├── MCP-AGENT-FLOW-COMPLETE.md
-│   ├── SIFT-TOOLS-COMPLETE-GUIDE.md
-│   └── README.md
-│
-└── sift-datasets/           # Sample forensic evidence
+├── sift-tui/                Terminal UI dashboard
+├── sift-documents/          Architecture and tool documentation
+└── sift-datasets/           Sample forensic evidence (not tracked)
 ```
 
 ---
 
 ## Key Features
 
-```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│ SIFT Enterprise-Grade Capabilities                                          │
-├──────────────────────────────┬─────────────────────────────────────────────┤
-│ COMPREHENSIVE TOOLING        │ INTELLIGENT ANALYSIS                        │
-│ ✓ 400+ forensic tools        │ ✓ AI-driven orchestration                  │
-│ ✓ 9 specialized servers      │ ✓ Multi-domain coordination                │
-│ ✓ Industry-standard binaries │ ✓ Automated workflow management            │
-│ ✓ Academic research tools    │ ✓ Context-aware investigation              │
-├──────────────────────────────┼─────────────────────────────────────────────┤
-│ EVIDENCE INTEGRITY           │ THREAT INTELLIGENCE                         │
-│ ✓ Automatic hash verification│ ✓ ATT&CK technique mapping                 │
-│ ✓ Chain-of-custody tracking  │ ✓ Threat actor attribution                 │
-│ ✓ Cryptographic validation   │ ✓ D3FEND defensive mappings                │
-│ ✓ Forensic audit trails      │ ✓ TTP correlation analysis                 │
-├──────────────────────────────┼─────────────────────────────────────────────┤
-│ REAL-TIME VISIBILITY         │ EXTENSIBILITY & STANDARDS                   │
-│ ✓ Live progress dashboards   │ ✓ MCP protocol integration                  │
-│ ✓ Agent activity monitoring  │ ✓ Pluggable tool interface                  │
-│ ✓ Finding stream tracking    │ ✓ Standardized response envelopes          │
-│ ✓ Cost & token tracking      │ ✓ Reproducible analysis workflows          │
-└──────────────────────────────┴─────────────────────────────────────────────┘
-```
-
-### Capabilities
-
-- **Comprehensive Tool Coverage** — 400+ forensic tools across 9 specialized domains
-- **AI-Driven Analysis** — Claude AI coordinates complex multi-stage investigations
-- **Evidence Integrity** — Automatic hash verification and chain-of-custody tracking
-- **Threat Attribution** — Integrated ATT&CK and D3FEND mappings for contextual threat intelligence
-- **Real-Time Dashboarding** — Live progress visualization during investigations
-- **Standardized Interface** — MCP-based tool wrapping for extensibility
-- **Reproducible Workflows** — Full logging and audit trails for all operations
+- **Comprehensive tooling** — 400+ forensic tools across 9 specialized MCP servers
+- **Agentic orchestration** — a deterministic controller drives isolated Claude Agent SDK specialists
+- **Evidence integrity** — hash verification and chain-of-custody tracking enforced by gates and hooks
+- **Threat attribution** — integrated MITRE ATT&CK and D3FEND mappings
+- **Auditability** — every phase, tool call, gate decision, and cost recorded to a JSONL trail
+- **Keyless operation** — runs on a Claude subscription login or an API key
 
 ---
 
 ## Documentation
 
-For detailed information, see:
-
-- [MCP Architecture & Agent Flow](./sift-documents/MCP-AGENT-FLOW-COMPLETE.md) — Complete execution timeline and data flow
-- [Logging & Instrumentation](./sift-documents/MCP-AGENT-LOGGING-EXPLAINED.md) — Event streaming and observability
-- [Tool Reference](./sift-mcp-servers/Sift-MCP-Tools.md) — All 400+ tools with parameters and examples
-- [TUI Design Guide](./sift-documents/SIFT-MCP-TUI-DESIGN-GUIDE.md) — Dashboard architecture and customization
-
----
-
-## Requirements
-
-- Python 3.10 or later
-- DFIR toolchain (pre-installed in WSL/Linux image)
-- Internet access for MCP initialization
-- Sufficient disk space for large forensic images (100GB+ recommended)
-
----
-
-## Performance
-
-- **Typical small investigation** — 2-4 hours
-- **Complex multi-system incident** — 4-8 hours
-- **Tool execution overhead** — 50ms-5s per tool (depends on tool complexity)
-- **Token usage** — 50k-100k tokens per investigation
+- [MCP Architecture & Agent Flow](./sift-documents/MCP-AGENT-FLOW-COMPLETE.md)
+- [Logging & Instrumentation](./sift-documents/MCP-AGENT-LOGGING-EXPLAINED.md)
+- [Tool Reference](./sift-mcp-servers/Sift-MCP-Tools.md)
+- [TUI Design Guide](./sift-documents/SIFT-MCP-TUI-DESIGN-GUIDE.md)
 
 ---
 
 ## Contributing
 
-Contributions are welcome. Please ensure:
-- New tools are wrapped through appropriate MCP servers
-- All tools include standardized response envelopes
-- Tool verification tests pass
-- Documentation is updated accordingly
-
----
-
-## Support
-
-For issues, documentation clarifications, or tool-specific questions:
-
-1. Check [sift-documents/](./sift-documents/) for architectural guidance
-2. Review [sift-mcp-servers/logs/](./sift-mcp-servers/logs/) for execution traces
-3. Run verification suite to validate environment setup
+Contributions are welcome. Please ensure new tools are wrapped through the appropriate MCP server with a standardized response envelope, and that verification tests pass.
 
 ---
 
 ## License
 
 See individual component directories for licensing information.
-
----
-
-## Version & Support
-
-```
-┌──────────────────────────────────────────────────────┐
-│  SIFT Sentinel Intelligence Forensic Tools           │
-│                                                      │
-│  Version:     1.0                                    │
-│  Release:     June 2026                              │
-│  Status:      Production Ready                       │
-│  Support:     Documentation & Community              │
-└──────────────────────────────────────────────────────┘
-```
-
----
-
-**Developed with enterprise-grade security and forensic integrity standards**
