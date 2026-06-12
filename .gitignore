@@ -49,6 +49,9 @@ ENV/
 logs/
 *.log
 
+# --- Agent investigation outputs (generated per case) ----------------------
+reports/
+
 # --- Test / coverage / caches ----------------------------------------------
 .pytest_cache/
 .mypy_cache/
