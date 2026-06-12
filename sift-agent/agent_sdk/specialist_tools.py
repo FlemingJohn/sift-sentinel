@@ -1,6 +1,4 @@
-from __future__ import annotations
-
-_ACQUIRER_DISK = [
+ACQUIRER_TOOL_NAMES = [
     "tool_dd", "tool_dc3dd", "tool_dcfldd", "tool_ddrescue", "tool_ddrescuelog",
     "tool_ewfacquire", "tool_ewfacquirestream", "tool_ewfverify", "tool_ewfexport",
     "tool_ewfinfo", "tool_ewfmount", "tool_ewfdebug", "tool_ewfrecover",
@@ -15,7 +13,12 @@ _ACQUIRER_DISK = [
     "tool_regfmount", "tool_lowntfs_3g", "tool_ntfs_3g",
 ]
 
-_FILESYSTEM = [
+HASHER_TOOL_NAMES = [
+    "tool_hashdeep", "tool_md5deep", "tool_sha1deep", "tool_sha256deep",
+    "tool_ssdeep", "tool_tigerdeep", "tool_whirlpooldeep",
+]
+
+FILESYSTEM_TOOL_NAMES = [
     "tool_fls", "tool_fcat", "tool_icat", "tool_ifind", "tool_ils", "tool_istat",
     "tool_jcat", "tool_jls", "tool_mmls", "tool_mmstat", "tool_mmcat",
     "tool_fsstat", "tool_img_cat", "tool_img_stat",
@@ -29,14 +32,14 @@ _FILESYSTEM = [
     "tool_debugfs", "tool_dumpe2fs", "tool_lsattr", "tool_filefrag",
 ]
 
-_CARVER = [
+CARVER_TOOL_NAMES = [
     "tool_foremost", "tool_scalpel", "tool_photorec", "tool_srch_strings",
     "tool_testdisk", "tool_extundelete", "tool_ntfsrecover", "tool_gzrecover",
     "tool_jpeg_extract", "tool_7z", "tool_7za", "tool_rar",
     "tool_exif", "tool_fidentify", "tool_fdupes", "tool_plistutil",
 ]
 
-_WINDOWS = [
+WINDOWS_TOOL_NAMES = [
     "tool_cabextract", "tool_esedbexport", "tool_esedbinfo",
     "tool_evtexport", "tool_evtinfo", "tool_evtxexport", "tool_evtxinfo",
     "tool_image_export_py", "tool_log2timeline_py", "tool_pinfo_py",
@@ -47,17 +50,12 @@ _WINDOWS = [
     "tool_vshadowdebug", "tool_vshadowinfo", "tool_vshadowmount",
 ]
 
-_MEMORY = [
+MEMORY_TOOL_NAMES = [
     "tool_aeskeyfind", "tool_bulk_extractor", "tool_ent",
     "tool_plugin_test", "tool_rsakeyfind",
 ]
 
-_HASHING = [
-    "tool_hashdeep", "tool_md5deep", "tool_sha1deep", "tool_sha256deep",
-    "tool_ssdeep", "tool_tigerdeep", "tool_whirlpooldeep",
-]
-
-_NETWORK_PCAP = [
+NETWORK_TOOL_NAMES = [
     "tool_tcpflow", "tool_tcpick", "tool_tcptrace", "tool_tcptrack",
     "tool_tcpstat", "tool_tcpprof", "tool_tcpcapinfo", "tool_tcpslice",
     "tool_tcpxtract", "tool_tcpreplay", "tool_tcpreplay_edit",
@@ -68,7 +66,7 @@ _NETWORK_PCAP = [
     "tool_kstats", "tool_get_oui", "tool_get_iab",
 ]
 
-_MALWARE_STATIC = [
+MALWARE_STATIC_TOOL_NAMES = [
     "tool_readpe", "tool_pescan", "tool_pesec", "tool_pestr", "tool_peres",
     "tool_pehash", "tool_pedis", "tool_peldd", "tool_pepack",
     "tool_ofs2rva", "tool_rva2ofs",
@@ -76,7 +74,7 @@ _MALWARE_STATIC = [
     "tool_upx_ucl",
 ]
 
-_REVERSING = [
+REVERSING_TOOL_NAMES = [
     "tool_r2", "tool_r2agent", "tool_r2p", "tool_r2pm", "tool_r2r",
     "tool_rabin2", "tool_radare2", "tool_radiff2", "tool_rafind2",
     "tool_ragg2", "tool_rahash2", "tool_rarun2", "tool_rasign2",
@@ -84,7 +82,7 @@ _REVERSING = [
     "tool_gdb", "tool_gdbtui", "tool_gdb_add_index", "tool_gcore",
 ]
 
-_CRYPTO = [
+CRYPTO_TOOL_NAMES = [
     "tool_dislocker", "tool_dislocker_bek", "tool_dislocker_file",
     "tool_dislocker_find", "tool_dislocker_fuse", "tool_dislocker_metadata",
     "tool_fvdeinfo", "tool_fvdemount", "tool_fvdewipekey",
@@ -93,29 +91,28 @@ _CRYPTO = [
     "tool_cmospwd", "tool_histogram",
 ]
 
-_ATTACK = [
+ATTACK_MAP_TOOL_NAMES = [
     "assess_attack_chain", "get_countermeasures", "get_groups_using_technique",
     "get_sift_tools_for_technique", "get_software_used_by_group",
     "get_technique_details", "list_techniques_by_tactic", "map_finding_to_technique",
 ]
 
-_DEFEND = [
+DEFENSE_MAP_TOOL_NAMES = [
     "find_defenses_for_artifact", "get_attack_to_defend_coverage",
     "get_defense", "list_defenses_by_tactic", "list_defenses_for_attack",
 ]
 
-
-WORKER_TOOLS: dict[str, list[str]] = {
-    "acquirer": _ACQUIRER_DISK,
-    "hasher": _HASHING,
-    "filesystem": _FILESYSTEM,
-    "carver": _CARVER,
-    "windows": _WINDOWS,
-    "memory": _MEMORY,
-    "network": _NETWORK_PCAP,
-    "malware_static": _MALWARE_STATIC,
-    "reversing": _REVERSING,
-    "crypto": _CRYPTO,
-    "attack_map": _ATTACK,
-    "defense_map": _DEFEND,
+SPECIALIST_TOOL_ALLOWLISTS = {
+    "acquirer": ACQUIRER_TOOL_NAMES,
+    "hasher": HASHER_TOOL_NAMES,
+    "filesystem": FILESYSTEM_TOOL_NAMES,
+    "carver": CARVER_TOOL_NAMES,
+    "windows": WINDOWS_TOOL_NAMES,
+    "memory": MEMORY_TOOL_NAMES,
+    "network": NETWORK_TOOL_NAMES,
+    "malware_static": MALWARE_STATIC_TOOL_NAMES,
+    "reversing": REVERSING_TOOL_NAMES,
+    "crypto": CRYPTO_TOOL_NAMES,
+    "attack_map": ATTACK_MAP_TOOL_NAMES,
+    "defense_map": DEFENSE_MAP_TOOL_NAMES,
 }
