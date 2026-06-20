@@ -7,7 +7,7 @@ def evidence_is_fully_hashed(case_state):
 def findings_have_attribution(case_state):
     if not case_state.findings:
         return False
-    return all(finding_record.attack_techniques for finding_record in case_state.findings)
+    return any(finding_record.attack_techniques for finding_record in case_state.findings)
 
 
 def determine_halt_reason(case_state):
@@ -17,6 +17,6 @@ def determine_halt_reason(case_state):
         return "no_evidence"
     if not all(evidence_record.sha256 for evidence_record in case_state.evidence):
         return "unhashed_evidence"
-    if not all(finding_record.attack_techniques for finding_record in case_state.findings):
+    if not any(finding_record.attack_techniques for finding_record in case_state.findings):
         return "missing_attack_attribution"
     return "unknown"

@@ -1,4 +1,8 @@
+import asyncio
 import json
+from pathlib import PurePosixPath
+
+from configuration import WSL_DISTRIBUTION
 
 from case_state import (
     add_attack_techniques,
@@ -6,11 +10,12 @@ from case_state import (
     add_defenses,
     add_finding,
     apply_evidence_classification,
-    apply_evidence_hashes,
     create_initial_case_state,
     evidence_hash_set,
+    find_finding_by_identifier,
     hashed_evidence_paths,
 )
+from deterministic_hashing import compute_evidence_hashes
 from forensic_records import build_chain_entries, build_finding
 from gates import (
     determine_halt_reason,
@@ -21,7 +26,8 @@ from report_synthesizer import generate_narrative, validate_findings, write_repo
 from routing import select_specialists
 from specialist_runner import run_specialist
 from specialists import SPECIALIST_DEFINITIONS
-from text_parsing import parse_first_json
+from technique_corpus import filter_valid_techniques, load_valid_technique_ids
+from text_parsing import parse_json_with_key
 
 
 DISK_EXTENSIONS = (".e01", ".aff", ".dd", ".raw", ".img", ".001", ".ad1")
@@ -40,8 +46,43 @@ def classify_by_extension(path):
     return "other"
 
 
+ATTRIBUTION_MAPPING_PASSES = 2
+
+EVIDENCE_LINK_DIRECTORY = "/var/tmp/sift-evidence"
+
+
+async def run_wsl_command(*arguments):
+    process = await asyncio.create_subprocess_exec(
+        "wsl.exe", "-d", WSL_DISTRIBUTION, "--", *arguments,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+        stdin=asyncio.subprocess.DEVNULL,
+    )
+    stdout_bytes, stderr_bytes = await process.communicate()
+    return (
+        process.returncode,
+        stdout_bytes.decode("utf-8", "replace"),
+        stderr_bytes.decode("utf-8", "replace").strip(),
+    )
+
+
+async def prepare_evidence_links(case_state, audit_logger):
+    await run_wsl_command("mkdir", "-p", EVIDENCE_LINK_DIRECTORY)
+    for evidence_record in case_state.evidence:
+        link_path = f"{EVIDENCE_LINK_DIRECTORY}/{PurePosixPath(evidence_record.host_path).name}"
+        returncode, _, stderr_text = await run_wsl_command(
+            "ln", "-sf", evidence_record.host_path, link_path
+        )
+        if returncode == 0:
+            evidence_record.path = link_path
+        else:
+            audit_logger.error_occurred(
+                "prepare", f"space-free link failed for {evidence_record.host_path}: {stderr_text}"
+            )
+
+
 def parse_rows(result, container_key):
-    parsed = parse_first_json(result.final_text)
+    parsed = parse_json_with_key(result.final_text, container_key)
     if not isinstance(parsed, dict):
         return []
     rows = parsed.get(container_key)
@@ -93,32 +134,22 @@ async def run_hash_phase(case_state, audit_logger):
     audit_logger.phase_changed("hash")
     configuration = SPECIALIST_DEFINITIONS["hasher"]
     audit_logger.specialist_started(configuration.name, configuration.description)
-    paths = [
-        evidence_record.path
-        for evidence_record in case_state.evidence
-        if not evidence_record.sha256
-    ]
-    task_text = f"Hash these files and return the JSON manifest: {json.dumps(paths)}"
-    result = await run_specialist(configuration, task_text, case_state, audit_logger)
-    audit_logger.specialist_completed(
-        configuration.name, result.input_tokens, result.output_tokens,
-        result.cost_usd, configuration.is_supervisor,
-    )
-
-    hash_by_path = {}
-    for row in parse_rows(result, "hashes"):
-        if isinstance(row, dict) and row.get("path"):
-            hash_by_path[row["path"]] = row
-
-    chain_entries = build_chain_entries("hasher", result.tool_envelopes)
-    for path, row in hash_by_path.items():
-        apply_evidence_hashes(
-            case_state, path,
-            row.get("sha256") or "",
-            row.get("md5") or "",
-            row.get("ssdeep") or "",
-            chain_entries,
+    for evidence_record in case_state.evidence:
+        if evidence_record.sha256:
+            continue
+        hashes = await asyncio.to_thread(compute_evidence_hashes, evidence_record.host_path)
+        evidence_record.sha256 = hashes["sha256"]
+        evidence_record.md5 = hashes["md5"]
+        evidence_record.sha1 = hashes["sha1"]
+        envelope = {"tool": "hashlib", "exit_code": 0, **hashes}
+        evidence_record.chain_of_custody.extend(build_chain_entries("hasher", [envelope]))
+        audit_logger.tool_invoked("hasher", "hashlib", 0, None)
+        audit_logger.information(
+            "hasher",
+            f"{PurePosixPath(evidence_record.host_path).name} "
+            f"md5={hashes['md5']} sha1={hashes['sha1']} sha256={hashes['sha256']}",
         )
+    audit_logger.specialist_completed(configuration.name, 0, 0, 0.0, configuration.is_supervisor)
 
 
 async def run_analysis_specialist(case_state, specialist_name, audit_logger):
@@ -170,60 +201,101 @@ async def run_analyze_phase(case_state, audit_logger):
             executed.add(specialist_name)
 
 
+def build_ordinal_mapping(findings):
+    ordinal_to_identifier = {}
+    for position, finding_record in enumerate(findings, start=1):
+        ordinal_to_identifier[str(position)] = finding_record.identifier
+    return ordinal_to_identifier
+
+
+async def run_attack_mapping_pass(case_state, findings, valid_technique_ids, audit_logger):
+    configuration = SPECIALIST_DEFINITIONS["attack_map"]
+    audit_logger.specialist_started(configuration.name, configuration.description)
+    ordinal_to_identifier = build_ordinal_mapping(findings)
+    items = [
+        {"id": ordinal, "claim": find_finding_by_identifier(case_state, identifier).claim}
+        for ordinal, identifier in ordinal_to_identifier.items()
+    ]
+    task_text = f"Map these findings to ATT&CK:\n{json.dumps(items, indent=2)}"
+    result = await run_specialist(configuration, task_text, case_state, audit_logger)
+    audit_logger.specialist_completed(
+        configuration.name, result.input_tokens, result.output_tokens,
+        result.cost_usd, configuration.is_supervisor,
+    )
+    for row in parse_rows(result, "patches"):
+        if not isinstance(row, dict):
+            continue
+        identifier = ordinal_to_identifier.get(str(row.get("id")))
+        techniques = row.get("attack_techniques")
+        if not identifier or not techniques:
+            continue
+        accepted, rejected = filter_valid_techniques(techniques, valid_technique_ids)
+        if rejected:
+            audit_logger.information(
+                "attack_map",
+                f"rejected uncorroborated technique ids for {identifier}: "
+                f"{', '.join(rejected)}",
+            )
+        if accepted:
+            add_attack_techniques(case_state, identifier, accepted)
+
+
+async def run_defense_mapping_pass(case_state, findings, audit_logger):
+    configuration = SPECIALIST_DEFINITIONS["defense_map"]
+    audit_logger.specialist_started(configuration.name, configuration.description)
+    ordinal_to_identifier = build_ordinal_mapping(findings)
+    items = [
+        {
+            "id": ordinal,
+            "attack_techniques": find_finding_by_identifier(
+                case_state, identifier
+            ).attack_techniques,
+        }
+        for ordinal, identifier in ordinal_to_identifier.items()
+    ]
+    task_text = f"Map these findings to D3FEND:\n{json.dumps(items, indent=2)}"
+    result = await run_specialist(configuration, task_text, case_state, audit_logger)
+    audit_logger.specialist_completed(
+        configuration.name, result.input_tokens, result.output_tokens,
+        result.cost_usd, configuration.is_supervisor,
+    )
+    for row in parse_rows(result, "patches"):
+        if not isinstance(row, dict):
+            continue
+        identifier = ordinal_to_identifier.get(str(row.get("id")))
+        defenses = row.get("d3fend_defenses")
+        if identifier and defenses:
+            add_defenses(case_state, identifier, defenses)
+
+
 async def run_attribute_phase(case_state, audit_logger):
     audit_logger.phase_changed("attribute")
-    attack_configuration = SPECIALIST_DEFINITIONS["attack_map"]
-    pending_findings = [
-        finding_record for finding_record in case_state.findings
-        if not finding_record.attack_techniques
-    ]
-    if pending_findings:
-        audit_logger.specialist_started(
-            attack_configuration.name, attack_configuration.description
+    valid_technique_ids = load_valid_technique_ids()
+    if not valid_technique_ids:
+        case_state.halt_reason = "attack_corpus_unavailable"
+        audit_logger.error_occurred(
+            "attribute",
+            "ATT&CK corpus could not be loaded; cannot validate attribution",
         )
-        items = [
-            {"id": finding_record.identifier, "claim": finding_record.claim}
-            for finding_record in pending_findings
-        ]
-        task_text = f"Map these findings to ATT&CK:\n{json.dumps(items, indent=2)}"
-        result = await run_specialist(
-            attack_configuration, task_text, case_state, audit_logger
-        )
-        audit_logger.specialist_completed(
-            attack_configuration.name, result.input_tokens, result.output_tokens,
-            result.cost_usd, attack_configuration.is_supervisor,
-        )
-        for row in parse_rows(result, "patches"):
-            if isinstance(row, dict) and row.get("id") and row.get("attack_techniques"):
-                add_attack_techniques(case_state, row["id"], row["attack_techniques"])
+        return
 
-    defense_configuration = SPECIALIST_DEFINITIONS["defense_map"]
+    for _ in range(ATTRIBUTION_MAPPING_PASSES):
+        unattributed = [
+            finding_record for finding_record in case_state.findings
+            if not finding_record.attack_techniques
+        ]
+        if not unattributed:
+            break
+        await run_attack_mapping_pass(
+            case_state, unattributed, valid_technique_ids, audit_logger
+        )
+
     mapped_findings = [
         finding_record for finding_record in case_state.findings
         if finding_record.attack_techniques and not finding_record.d3fend_defenses
     ]
     if mapped_findings:
-        audit_logger.specialist_started(
-            defense_configuration.name, defense_configuration.description
-        )
-        items = [
-            {
-                "id": finding_record.identifier,
-                "attack_techniques": finding_record.attack_techniques,
-            }
-            for finding_record in mapped_findings
-        ]
-        task_text = f"Map these findings to D3FEND:\n{json.dumps(items, indent=2)}"
-        result = await run_specialist(
-            defense_configuration, task_text, case_state, audit_logger
-        )
-        audit_logger.specialist_completed(
-            defense_configuration.name, result.input_tokens, result.output_tokens,
-            result.cost_usd, defense_configuration.is_supervisor,
-        )
-        for row in parse_rows(result, "patches"):
-            if isinstance(row, dict) and row.get("id") and row.get("d3fend_defenses"):
-                add_defenses(case_state, row["id"], row["d3fend_defenses"])
+        await run_defense_mapping_pass(case_state, mapped_findings, audit_logger)
 
 
 async def run_report_phase(case_state, audit_logger):
@@ -253,6 +325,7 @@ async def run_investigation(case_id, evidence_paths, audit_logger):
         audit_logger.print_summary()
         return case_state
 
+    await prepare_evidence_links(case_state, audit_logger)
     await run_acquire_phase(case_state, audit_logger)
     await run_hash_phase(case_state, audit_logger)
 

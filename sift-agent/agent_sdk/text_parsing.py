@@ -1,21 +1,42 @@
 import hashlib
 import json
-import re
 
 
-JSON_OBJECT_OR_ARRAY = re.compile(r"(\{[\s\S]*\}|\[[\s\S]*\])")
+def iter_json_values(text):
+    decoder = json.JSONDecoder()
+    index = 0
+    length = len(text)
+    while index < length:
+        if text[index] in "{[":
+            try:
+                value, end = decoder.raw_decode(text, index)
+            except json.JSONDecodeError:
+                index += 1
+                continue
+            yield value
+            index = end
+        else:
+            index += 1
 
 
 def parse_first_json(text):
     if not text:
         return None
-    match = JSON_OBJECT_OR_ARRAY.search(text)
-    if not match:
+    for value in iter_json_values(text):
+        return value
+    return None
+
+
+def parse_json_with_key(text, key):
+    if not text:
         return None
-    try:
-        return json.loads(match.group(0))
-    except json.JSONDecodeError:
-        return None
+    first_value = None
+    for value in iter_json_values(text):
+        if isinstance(value, dict) and key in value:
+            return value
+        if first_value is None:
+            first_value = value
+    return first_value
 
 
 def extract_text_from_content(content):
