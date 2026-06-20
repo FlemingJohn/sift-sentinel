@@ -2,7 +2,7 @@ import asyncio
 import json
 from pathlib import PurePosixPath
 
-from configuration import WSL_DISTRIBUTION
+from configuration import MAXIMUM_ANALYSIS_ATTEMPTS, WSL_DISTRIBUTION
 
 from case_state import (
     add_attack_techniques,
@@ -152,9 +152,7 @@ async def run_hash_phase(case_state, audit_logger):
     audit_logger.specialist_completed(configuration.name, 0, 0, 0.0, configuration.is_supervisor)
 
 
-async def run_analysis_specialist(case_state, specialist_name, audit_logger):
-    configuration = SPECIALIST_DEFINITIONS[specialist_name]
-    audit_logger.specialist_started(configuration.name, configuration.description)
+def build_analysis_task(case_state):
     references = sorted(evidence_hash_set(case_state))
     evidence_paths = hashed_evidence_paths(case_state)
     task_lines = [
@@ -166,13 +164,11 @@ async def run_analysis_specialist(case_state, specialist_name, audit_logger):
         task_lines.append(
             f"Candidate files of interest: {json.dumps(case_state.candidate_files)}"
         )
-    task_text = " ".join(task_lines)
-    result = await run_specialist(configuration, task_text, case_state, audit_logger)
-    audit_logger.specialist_completed(
-        configuration.name, result.input_tokens, result.output_tokens,
-        result.cost_usd, configuration.is_supervisor,
-    )
+    return " ".join(task_lines)
 
+
+def apply_specialist_findings(case_state, result, specialist_name, references):
+    findings_added = 0
     for row in parse_rows(result, "findings"):
         if not isinstance(row, dict) or not row.get("claim"):
             continue
@@ -186,6 +182,33 @@ async def run_analysis_specialist(case_state, specialist_name, audit_logger):
         add_finding(case_state, finding_record)
         candidate_files = row.get("candidate_files") or []
         add_candidate_files(case_state, candidate_files)
+        findings_added += 1
+    return findings_added
+
+
+async def run_analysis_specialist(case_state, specialist_name, audit_logger):
+    configuration = SPECIALIST_DEFINITIONS[specialist_name]
+    references = sorted(evidence_hash_set(case_state))
+    task_text = build_analysis_task(case_state)
+    findings_added = 0
+    for attempt in range(1, MAXIMUM_ANALYSIS_ATTEMPTS + 1):
+        audit_logger.specialist_started(configuration.name, configuration.description)
+        result = await run_specialist(configuration, task_text, case_state, audit_logger)
+        audit_logger.specialist_completed(
+            configuration.name, result.input_tokens, result.output_tokens,
+            result.cost_usd, configuration.is_supervisor,
+        )
+        findings_added = apply_specialist_findings(
+            case_state, result, specialist_name, references
+        )
+        if findings_added > 0:
+            break
+        if attempt < MAXIMUM_ANALYSIS_ATTEMPTS:
+            audit_logger.information(
+                specialist_name,
+                f"no findings on attempt {attempt} of {MAXIMUM_ANALYSIS_ATTEMPTS}; retrying",
+            )
+    return findings_added
 
 
 async def run_analyze_phase(case_state, audit_logger):
