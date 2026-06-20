@@ -337,8 +337,10 @@ def halt_investigation(case_state, audit_logger):
     audit_logger.error_occurred("halt", f"reason={case_state.halt_reason}")
 
 
-async def run_investigation(case_id, evidence_paths, audit_logger):
+async def run_investigation(case_id, evidence_paths, audit_logger, on_case_state=None):
     case_state = create_initial_case_state(case_id, evidence_paths)
+    if on_case_state is not None:
+        on_case_state(case_state)
     audit_logger.open_case(case_id)
 
     if not case_state.evidence:
