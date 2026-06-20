@@ -34,13 +34,13 @@ trunc = OutputTruncator(max_chars=50_000)
 
 # ── data location ────────────────────────────────────────────────────────────
 
-DEFAULT_STIX_DIR = "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/repoistory-reference/attack-stix-data"
+DEFAULT_STIX_DIR = Path(__file__).resolve().parent.parent / "mitre-attack"
 STIX_DIR = Path(os.environ.get("SIFT_ATTACK_STIX_DIR", DEFAULT_STIX_DIR))
 
 DOMAIN_FILES = {
-    "enterprise": STIX_DIR / "enterprise-attack" / "enterprise-attack.json",
-    "ics":        STIX_DIR / "ics-attack"        / "ics-attack.json",
-    "mobile":     STIX_DIR / "mobile-attack"     / "mobile-attack.json",
+    "enterprise": STIX_DIR / "enterprise-attack.json",
+    "ics":        STIX_DIR / "ics-attack.json",
+    "mobile":     STIX_DIR / "mobile-attack.json",
 }
 
 
