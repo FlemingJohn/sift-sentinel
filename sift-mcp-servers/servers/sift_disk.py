@@ -43,6 +43,7 @@ def _run(binary: str, args: list, timeout: int = 300) -> dict:
             capture_output=True,
             text=True,
             timeout=timeout,
+            stdin=subprocess.DEVNULL,
         )
         duration_ms = int(
             (datetime.now(timezone.utc) - start).total_seconds() * 1000
