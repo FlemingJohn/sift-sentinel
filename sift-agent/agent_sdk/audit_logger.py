@@ -29,6 +29,11 @@ class AuditLogger:
     statistics: dict = field(default_factory=dict)
     lock: threading.Lock = field(default_factory=threading.Lock)
     audit_file_path: str = ""
+    observers: list = field(default_factory=list)
+    console_enabled: bool = True
+
+    def add_observer(self, callback):
+        self.observers.append(callback)
 
     def open_case(self, case_id):
         self.case_id = case_id
@@ -130,6 +135,11 @@ class AuditLogger:
         self.print_line(f"  TOTAL cost_usd={self.total_cost_usd():.4f}")
 
     def write_record(self, kind, payload):
+        for observer in self.observers:
+            try:
+                observer(kind, payload)
+            except Exception:
+                pass
         if not self.audit_file_path:
             return
         record = {
@@ -142,6 +152,8 @@ class AuditLogger:
                 handle.write(json.dumps(record) + "\n")
 
     def print_line(self, line):
+        if not self.console_enabled:
+            return
         with self.lock:
             print(line, flush=True)
 

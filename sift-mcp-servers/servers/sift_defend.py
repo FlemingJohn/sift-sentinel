@@ -30,11 +30,11 @@ trunc = OutputTruncator(max_chars=50_000)
 
 # ── data location ────────────────────────────────────────────────────────────
 
-DEFAULT_D3F_DIR = "/mnt/c/Users/FlemingJohn/Downloads/sift-mcp-servers/repoistory-reference/d3fend-gh-pages"
+DEFAULT_D3F_DIR = Path(__file__).resolve().parent.parent / "mitre-defend"
 D3F_DIR = Path(os.environ.get("SIFT_D3FEND_DIR", DEFAULT_D3F_DIR))
 
-TECH_DIR     = D3F_DIR / "api" / "technique"
-MAPPINGS_FILE = D3F_DIR / "api" / "ontology" / "inference" / "d3fend-full-mappings.json"
+TECH_DIR     = D3F_DIR / "techniques"
+MAPPINGS_FILE = D3F_DIR / "d3fend-full-mappings.json"
 
 
 # ── indexes ──────────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ def _load_techniques() -> int:
         print(f"[sift-defend] WARNING: technique directory missing at {TECH_DIR}")
         return 0
     count = 0
-    for fp in TECH_DIR.glob("d3f:*.json"):
+    for fp in TECH_DIR.glob("d3f_*.json"):
         try:
             doc = json.loads(fp.read_text(encoding="utf-8"))
         except Exception as e:

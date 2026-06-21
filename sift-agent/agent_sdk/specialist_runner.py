@@ -77,33 +77,39 @@ async def run_specialist(specialist_configuration, task_text, case_state, audit_
     assistant_text_parts = []
     pending_tool_names = {}
 
-    async for message in query(prompt=task_text, options=options):
-        if isinstance(message, AssistantMessage):
-            for block in message.content:
-                if isinstance(block, ToolUseBlock):
-                    pending_tool_names[block.id] = unqualified_tool_name(block.name)
-                elif isinstance(block, TextBlock):
-                    assistant_text_parts.append(block.text)
-        elif isinstance(message, UserMessage):
-            blocks = message.content if isinstance(message.content, list) else []
-            for block in blocks:
-                if isinstance(block, ToolResultBlock):
-                    envelope = tool_result_to_envelope(block, pending_tool_names)
-                    result.tool_envelopes.append(envelope)
-        elif isinstance(message, ResultMessage):
-            usage = message.usage or {}
-            result.input_tokens = int(usage.get("input_tokens") or 0)
-            result.output_tokens = int(usage.get("output_tokens") or 0)
-            if message.total_cost_usd is not None:
-                result.cost_usd = message.total_cost_usd
-            else:
-                result.cost_usd = estimate_cost_usd(
-                    result.input_tokens,
-                    result.output_tokens,
-                    specialist_configuration.is_supervisor,
-                )
-            if message.result:
-                result.final_text = message.result
+    try:
+        async for message in query(prompt=task_text, options=options):
+            if isinstance(message, AssistantMessage):
+                for block in message.content:
+                    if isinstance(block, ToolUseBlock):
+                        pending_tool_names[block.id] = unqualified_tool_name(block.name)
+                    elif isinstance(block, TextBlock):
+                        assistant_text_parts.append(block.text)
+            elif isinstance(message, UserMessage):
+                blocks = message.content if isinstance(message.content, list) else []
+                for block in blocks:
+                    if isinstance(block, ToolResultBlock):
+                        envelope = tool_result_to_envelope(block, pending_tool_names)
+                        result.tool_envelopes.append(envelope)
+            elif isinstance(message, ResultMessage):
+                usage = message.usage or {}
+                result.input_tokens = int(usage.get("input_tokens") or 0)
+                result.output_tokens = int(usage.get("output_tokens") or 0)
+                if message.total_cost_usd is not None:
+                    result.cost_usd = message.total_cost_usd
+                else:
+                    result.cost_usd = estimate_cost_usd(
+                        result.input_tokens,
+                        result.output_tokens,
+                        specialist_configuration.is_supervisor,
+                    )
+                if message.result:
+                    result.final_text = message.result
+    except Exception as error:
+        audit_logger.error_occurred(
+            specialist_configuration.name,
+            f"specialist ended early: {error}",
+        )
 
     if not result.final_text:
         result.final_text = " ".join(assistant_text_parts)

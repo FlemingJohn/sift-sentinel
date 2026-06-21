@@ -12,8 +12,10 @@ class ChainOfCustodyEntry:
 @dataclass
 class EvidenceRecord:
     path: str
+    host_path: str = ""
     sha256: str = ""
     md5: str = ""
+    sha1: str = ""
     ssdeep: str = ""
     size_bytes: int = 0
     mime: str = ""
@@ -52,6 +54,7 @@ class CaseState:
     phase: str = "acquire"
     halted: bool = False
     halt_reason: str = ""
+    summary: str = ""
     has_disk_image: bool = False
     has_memory_dump: bool = False
     has_pcap: bool = False
@@ -61,7 +64,7 @@ class CaseState:
 
 
 def create_initial_case_state(case_id, evidence_paths):
-    evidence = [EvidenceRecord(path=path) for path in evidence_paths]
+    evidence = [EvidenceRecord(path=path, host_path=path) for path in evidence_paths]
     return CaseState(case_id=case_id, evidence=evidence)
 
 

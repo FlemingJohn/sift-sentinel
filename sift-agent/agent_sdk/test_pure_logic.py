@@ -22,7 +22,8 @@ from mcp_servers import (
 )
 from routing import select_specialists
 from specialist_tools import SPECIALIST_TOOL_ALLOWLISTS
-from text_parsing import parse_first_json
+from technique_corpus import filter_valid_techniques
+from text_parsing import parse_first_json, parse_json_with_key
 from tool_server_map import TOOL_SERVER_NAMES
 
 
@@ -117,6 +118,37 @@ check(
 add_defenses(attribution_case, finding.identifier, ["D3-AMED"])
 check("defenses are added to finding", attribution_case.findings[0].d3fend_defenses == ["D3-AMED"])
 
+partial_case = create_initial_case_state("c", ["/a"])
+apply_evidence_hashes(partial_case, "/a", "abc123", "", "", [])
+attributed_finding = build_finding("filesystem", "powershell execution", ["abc123"], [], "weak")
+benign_finding = build_finding("carver", "recovered photo", ["abc123"], [], "weak")
+add_finding(partial_case, attributed_finding)
+add_finding(partial_case, benign_finding)
+add_attack_techniques(partial_case, attributed_finding.identifier, ["T1059.001"])
+check(
+    "gate passes when at least one finding is attributed",
+    findings_have_attribution(partial_case),
+)
+
+unattributed_only_case = create_initial_case_state("c", ["/a"])
+apply_evidence_hashes(unattributed_only_case, "/a", "abc123", "", "", [])
+add_finding(unattributed_only_case, build_finding("carver", "recovered photo", ["abc123"], [], "weak"))
+check(
+    "gate fails when no finding is attributed",
+    not findings_have_attribution(unattributed_only_case),
+)
+check(
+    "halt reason is missing_attack_attribution when nothing attributed",
+    determine_halt_reason(unattributed_only_case) == "missing_attack_attribution",
+)
+
+valid_ids = {"T1059.001", "T1003"}
+accepted, rejected = filter_valid_techniques(["T1059.001", "T9999", "t1003"], valid_ids)
+check("corpus filter keeps valid ids", accepted == ["T1059.001", "T1003"])
+check("corpus filter rejects unknown ids", rejected == ["T9999"])
+accepted_dedup, _ = filter_valid_techniques(["T1059.001", "T1059.001"], valid_ids)
+check("corpus filter deduplicates valid ids", accepted_dedup == ["T1059.001"])
+
 check("every specialist has a non empty tool allowlist",
       all(len(tool_names) > 0 for tool_names in SPECIALIST_TOOL_ALLOWLISTS.values()))
 
@@ -155,6 +187,19 @@ check("parse_first_json reads an embedded object",
 
 check("parse_first_json returns none on no json",
       parse_first_json("no json here") is None)
+
+check("parse_first_json ignores trailing prose after a complete object",
+      parse_first_json('{"a": 1} then {"b": 2}') == {"a": 1})
+
+check("parse_first_json reads json from inside a code fence",
+      parse_first_json('```json\n{"a": 1}\n```') == {"a": 1})
+
+check("parse_json_with_key skips earlier objects lacking the key",
+      parse_json_with_key('{"other": 1} {"patches": [{"id": "1"}]}', "patches")
+      == {"patches": [{"id": "1"}]})
+
+check("parse_json_with_key falls back to first value when key is absent",
+      parse_json_with_key('{"a": 1}', "patches") == {"a": 1})
 
 check("malware static never includes execution tools",
       all("wine" not in name for name in SPECIALIST_TOOL_ALLOWLISTS["malware_static"]))

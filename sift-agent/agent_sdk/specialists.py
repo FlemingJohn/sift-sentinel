@@ -105,9 +105,12 @@ CRYPTO_PROMPT = (
 )
 
 ATTACK_MAP_PROMPT = (
-    "You are the attack mapper. For each finding, identify MITRE ATT&CK technique "
-    "identifiers that best fit. Use map_finding_to_technique on the claim, then "
-    "validate with get_technique_details. Prefer specific sub-techniques. "
+    "You are the attack mapper. For each finding, call map_finding_to_technique on "
+    "the claim and choose technique identifiers ONLY from the matches it returns. "
+    "Do not invent identifiers or recall them from memory; confirm each chosen "
+    "identifier with get_technique_details. Prefer specific sub-techniques. If no "
+    "returned match genuinely fits a finding, omit that finding rather than "
+    "guessing. "
     "Reply only with a JSON object of the form "
     '{"patches": [{"id": "finding-id", "attack_techniques": ["T1059.001"]}]}.'
 )

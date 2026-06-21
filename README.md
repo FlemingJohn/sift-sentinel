@@ -118,8 +118,8 @@ Nine independent MCP servers exposing 400+ forensic tools:
 
 | Server | Tool Count | Focus Area |
 |--------|-----------|-----------|
-| sift-attack | 8 | ATT&CK threat intelligence mapping |
-| sift-defend | 5 | D3FEND defensive mappings |
+| sift-attack | 8 | ATT&CK mapping over the full STIX corpus (1,140 techniques across the enterprise, ICS, and mobile domains) |
+| sift-defend | 5 | D3FEND defensive mappings (271 defenses across 325 ATT&CK techniques) |
 | sift-disk | 180 | Disk forensics and file analysis |
 | sift-windows | 27 | Windows-specific forensic tools |
 | sift-network | 96 | Network analysis and traffic inspection |
