@@ -325,6 +325,7 @@ async def run_report_phase(case_state, audit_logger):
     audit_logger.phase_changed("report")
     accepted_findings, dropped_findings = validate_findings(case_state)
     summary = await generate_narrative(case_state, accepted_findings)
+    case_state.summary = summary
     output_path = write_report(case_state, summary, accepted_findings, dropped_findings)
     case_state.phase = "done"
     audit_logger.information("synthesizer", f"report written to {output_path}")

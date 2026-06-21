@@ -9,7 +9,9 @@ This lives in its own folder but drives the controller defined in the sibling
   * the live CaseState handed back through on_case_state, which drives the
     FINDINGS and EVIDENCE panels.
 
-Run it inside WSL/Linux so the MCP servers can reach the SIFT binaries:
+Run it on the Windows host (in Windows Terminal), not inside WSL: the driver
+launches the MCP servers into WSL itself via wsl.exe, and the host Python must
+have both textual and claude_agent_sdk installed. Evidence paths stay in WSL form.
     python tui.py --case-id base-dc-01 --evidence /mnt/c/evidence/base-dc-cdrive.E01
 
 If the agent code is not at the sibling ../sift-agent/agent_sdk, point to it with:
@@ -64,6 +66,7 @@ class SiftTUI(App):
     #tools    { height: 1fr; }
     #findings { height: 55%; }
     #evidence { height: 1fr; }
+    #summary { height: 32%; padding: 0 1; border-top: solid $primary; }
     #status { height: 1; dock: bottom; background: $panel; padding: 0 1; }
     """
 
@@ -100,6 +103,8 @@ class SiftTUI(App):
                 yield DataTable(id="findings", cursor_type="row")
                 yield Static("EVIDENCE & INTEGRITY", classes="title")
                 yield DataTable(id="evidence", cursor_type="row")
+        yield Static("REPORT SUMMARY", classes="title")
+        yield RichLog(id="summary", markup=True, wrap=True)
         yield Static("", id="status")
         yield Footer()
 
@@ -199,6 +204,7 @@ class SiftTUI(App):
             self._phase = "done"
             self.query_one("#phasebar", Static).update(self._phase_bar())
             self.sub_title = "COMPLETE"
+            self._render_summary()
 
         self._render_agents()
         self._render_state()
@@ -236,6 +242,27 @@ class SiftTUI(App):
             return
         self._render_findings(self._case_state.findings)
         self._render_evidence(self._case_state.evidence)
+
+    def _render_summary(self) -> None:
+        state = self._case_state
+        box = self.query_one("#summary", RichLog)
+        box.clear()
+        if state is None:
+            return
+        if state.halted:
+            box.write(f"[red]Investigation halted: {state.halt_reason}[/]")
+            return
+        if state.summary:
+            box.write(state.summary)
+            box.write("")
+        for finding in state.findings:
+            techniques = ", ".join(finding.attack_techniques) or "-"
+            defenses = ", ".join(finding.d3fend_defenses) or "-"
+            box.write(
+                f"[b]{finding.identifier[:12]}[/]  "
+                f"[yellow]ATT&CK[/] {techniques}   [magenta]D3FEND[/] {defenses}"
+            )
+            box.write(f"  {finding.claim}")
 
     def _render_findings(self, findings: list) -> None:
         table = self.query_one("#findings", DataTable)

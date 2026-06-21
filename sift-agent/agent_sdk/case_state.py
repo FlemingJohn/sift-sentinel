@@ -54,6 +54,7 @@ class CaseState:
     phase: str = "acquire"
     halted: bool = False
     halt_reason: str = ""
+    summary: str = ""
     has_disk_image: bool = False
     has_memory_dump: bool = False
     has_pcap: bool = False
