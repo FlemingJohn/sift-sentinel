@@ -23,6 +23,7 @@ import argparse
 import json
 import os
 import sys
+from collections import Counter
 from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
@@ -33,6 +34,7 @@ _AGENT_DIR = os.getenv("SIFT_AGENT_DIR") or str(
 if _AGENT_DIR not in sys.path:
     sys.path.insert(0, _AGENT_DIR)
 
+from rich.text import Text
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, Vertical
@@ -40,11 +42,14 @@ from textual.message import Message
 from textual.widgets import DataTable, Footer, Header, RichLog, Static
 
 from audit_logger import AuditLogger
+from configuration import MAXIMUM_BUDGET_USD
 from investigation_controller import run_investigation
 
 PHASES = ["acquire", "hash", "analyze", "attribute", "report", "done"]
 _STATUS_ICON = {"run": "⟳", "done": "✓", "error": "✗", "idle": "·"}
 _CONF_DOT = {"confirmed": "●", "probable": "◐", "weak": "○"}
+_CONF_RANK = {"confirmed": 0, "probable": 1, "weak": 2}
+_CONF_STYLE = {"confirmed": "bold green", "probable": "yellow", "weak": "dim"}
 
 
 class LogMessage(Message):
@@ -58,12 +63,18 @@ class SiftTUI(App):
     CSS = """
     Screen { layout: vertical; }
     #phasebar { height: 1; padding: 0 1; background: $panel; }
+    #phasebar.-flash-bad { background: $error; color: $text; }
+    #phasebar.-flash-ok { background: $success; color: $text; }
+    #alert { height: 1; padding: 0 1; }
+    #alert.-active { background: $error; color: $text; text-style: bold; }
+    #alert.-warn { background: $warning; color: $text; text-style: bold; }
     #body { height: 1fr; }
     #left  { width: 42%; border-right: solid $primary; }
     #right { width: 1fr; }
     .title { background: $primary; color: $text; text-style: bold; padding: 0 1; }
-    #agents   { height: 45%; }
+    #agents   { height: 35%; }
     #tools    { height: 1fr; }
+    #critical { height: 9; border-top: solid $error; }
     #findings { height: 55%; }
     #evidence { height: 1fr; }
     #summary { height: 32%; padding: 0 1; border-top: solid $primary; }
@@ -74,6 +85,7 @@ class SiftTUI(App):
         Binding("q", "quit", "Quit"),
         Binding("e", "export", "Export snapshot"),
         Binding("c", "clear_log", "Clear tool log"),
+        Binding("a", "ack", "Ack alert"),
     ]
 
     def __init__(self, case_id: str, evidence: list[str]) -> None:
@@ -84,26 +96,35 @@ class SiftTUI(App):
         self._case_state = None
         self._agent_rows: set[str] = set()
         self._agent_status: dict[str, str] = {}
-        self._finding_rows: set[str] = set()
         self._evidence_rows: set[str] = set()
         self._phase = ""
+        # terminal-state + alert tracking
+        self._halted = False
+        self._completed = False
+        self._halt_phase = ""
+        self._alert_text = ""
+        self._alert_level = "error"
+        self._alert_count = 0
 
     # -- layout ---------------------------------------------------------- #
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         yield Static(self._phase_bar(), id="phasebar")
+        yield Static("[dim]● no alerts[/]", id="alert")
         with Horizontal(id="body"):
             with Vertical(id="left"):
                 yield Static("AGENTS", classes="title")
                 yield DataTable(id="agents", cursor_type="row")
                 yield Static("TOOL STREAM", classes="title")
                 yield RichLog(id="tools", markup=True, wrap=False)
+                yield Static("CRITICAL", classes="title", id="critical-title")
+                yield RichLog(id="critical", markup=True, wrap=True)
             with Vertical(id="right"):
-                yield Static("FINDINGS", classes="title")
+                yield Static("FINDINGS", classes="title", id="findings-title")
                 yield DataTable(id="findings", cursor_type="row")
                 yield Static("EVIDENCE & INTEGRITY", classes="title")
                 yield DataTable(id="evidence", cursor_type="row")
-        yield Static("REPORT SUMMARY", classes="title")
+        yield Static("REPORT SUMMARY", classes="title", id="summary-title")
         yield RichLog(id="summary", markup=True, wrap=True)
         yield Static("", id="status")
         yield Footer()
@@ -181,30 +202,38 @@ class SiftTUI(App):
                 tail += f" {payload['duration_ms']}ms"
             self._write(f"[{color}][Tool][/] [dim]{name}[/] [b]{payload.get('tool', '?')}[/]{tail}")
         elif kind == "gate_evaluated":
+            gate = payload.get("gate", "?")
             decision = payload.get("decision", "")
             color = "magenta" if decision == "ok" else "red"
-            self._write(
-                f"[magenta][Gate][/] [b]{payload.get('gate', '?')}[/] -> [{color}]{decision}[/]"
-            )
+            self._write(f"[magenta][Gate][/] [b]{gate}[/] -> [{color}]{decision}[/]")
+            if decision != "ok":
+                self._raise_alert(f"GATE FAILED: {gate}", "error")
+                self._write_critical(f"[b red]GATE FAILED[/] {gate}")
+                self.query_one("#phasebar", Static).update(self._phase_bar())
         elif kind == "tool_denied":
-            self._write(
-                f"[red][Deny][/] [b]{payload.get('specialist', '?')}[/] "
-                f"{payload.get('tool', '?')}: {payload.get('reason', '')}"
-            )
+            specialist = payload.get("specialist", "?")
+            tool = payload.get("tool", "?")
+            reason = payload.get("reason", "")
+            self._write(f"[red][Deny][/] [b]{specialist}[/] {tool}: {reason}")
+            self._raise_alert(f"DENIED: {specialist}/{tool} — {reason}", "warn")
+            self._write_critical(f"[b yellow]DENY[/] {specialist}/{tool}: {reason}")
         elif kind == "error":
             source = payload.get("source", "?")
+            message = payload.get("message", "")
             if source in self._agent_status:
                 self._agent_status[source] = "error"
-            self._write(f"[red][Error][/] [b]{source}[/] {payload.get('message', '')}")
+            self._write(f"[red][Error][/] [b]{source}[/] {message}")
+            self._write_critical(f"[b red]ERROR[/] {source}: {message}")
+            # "halt" is the controller's halt signal; the headline is set on
+            # case_completed, so only non-halt errors raise the banner here.
+            if source != "halt":
+                self._raise_alert(f"ERROR: {source} — {message}", "error")
         elif kind == "information":
             self._write(
                 f"[blue][Info][/] [dim]{payload.get('source', '?')}[/] {payload.get('message', '')}"
             )
         elif kind == "case_completed":
-            self._phase = "done"
-            self.query_one("#phasebar", Static).update(self._phase_bar())
-            self.sub_title = "COMPLETE"
-            self._render_summary()
+            self._finish_case()
 
         self._render_agents()
         self._render_state()
@@ -213,6 +242,74 @@ class SiftTUI(App):
     def _write(self, text: str) -> None:
         ts = datetime.now().strftime("%H:%M:%S")
         self.query_one("#tools", RichLog).write(f"[dim]{ts}[/] {text}")
+
+    # -- alerts / critical pane / attention ----------------------------- #
+    def _write_critical(self, text: str) -> None:
+        ts = datetime.now().strftime("%H:%M:%S")
+        self.query_one("#critical", RichLog).write(f"[dim]{ts}[/] {text}")
+
+    def _raise_alert(self, message: str, level: str = "error") -> None:
+        # A halt (error) outranks a denial (warn): never let a warn overwrite it.
+        if self._alert_level == "error" and level == "warn" and self._alert_text:
+            self._alert_count += 1
+            self._refresh_alert()
+            return
+        self._alert_count += 1
+        self._alert_text = message
+        self._alert_level = level
+        self._refresh_alert()
+
+    def _refresh_alert(self) -> None:
+        bar = self.query_one("#alert", Static)
+        bar.remove_class("-active")
+        bar.remove_class("-warn")
+        if not self._alert_text:
+            bar.update("[dim]● no alerts[/]")
+            return
+        bar.add_class("-warn" if self._alert_level == "warn" else "-active")
+        label = "WARN" if self._alert_level == "warn" else "ALERT"
+        suffix = f"   ({self._alert_count} total · a to ack)"
+        bar.update(f"[b]{label}[/]  {self._alert_text}{suffix}")
+
+    def _attention(self, level: str) -> None:
+        try:
+            self.bell()
+        except Exception:
+            pass
+        bar = self.query_one("#phasebar", Static)
+        css_class = "-flash-ok" if level == "done" else "-flash-bad"
+        ticks = {"count": 0}
+
+        def pulse() -> None:
+            bar.toggle_class(css_class)
+            ticks["count"] += 1
+            if ticks["count"] >= 6:
+                bar.remove_class(css_class)
+                timer.stop()
+
+        timer = self.set_interval(0.3, pulse)
+
+    def _finish_case(self) -> None:
+        state = self._case_state
+        if state is not None and state.halted:
+            self._halted = True
+            self._halt_phase = self._phase
+            self.sub_title = "HALTED"
+            self._raise_alert(f"HALTED: {state.halt_reason}", "error")
+            self.query_one("#summary-title", Static).update(
+                "[b white on red] INVESTIGATION HALTED [/]"
+            )
+            self._attention("halted")
+        else:
+            self._completed = True
+            self._phase = "done"
+            self.sub_title = "COMPLETE"
+            self.query_one("#summary-title", Static).update(
+                "[b black on green] REPORT READY [/]"
+            )
+            self._attention("done")
+        self.query_one("#phasebar", Static).update(self._phase_bar())
+        self._render_summary()
 
     # -- AGENTS panel --------------------------------------------------- #
     def _ensure_agent_row(self, name: str) -> None:
@@ -266,20 +363,29 @@ class SiftTUI(App):
 
     def _render_findings(self, findings: list) -> None:
         table = self.query_one("#findings", DataTable)
-        for finding in findings:
-            key = finding.identifier
+        # Rebuild so confirmed findings always sort above weaker ones and never
+        # hide below noise; the finding set is small, so the churn is cheap.
+        table.clear()
+        ordered = sorted(findings, key=lambda f: _CONF_RANK.get(f.confidence, 3))
+        for finding in ordered:
             confidence = finding.confidence
-            row = [
-                key[:12],
-                (finding.claim or "")[:48],
+            conf_cell = Text(
                 f"{_CONF_DOT.get(confidence, '○')} {confidence}",
+                style=_CONF_STYLE.get(confidence, ""),
+            )
+            table.add_row(
+                finding.identifier[:12],
+                (finding.claim or "")[:48],
+                conf_cell,
                 ",".join(finding.attack_techniques or []) or "-",
-            ]
-            if key in self._finding_rows:
-                self._replace_row(table, key, row)
-            else:
-                table.add_row(*row, key=key)
-                self._finding_rows.add(key)
+                key=finding.identifier,
+            )
+        counts = Counter(f.confidence for f in findings)
+        self.query_one("#findings-title", Static).update(
+            f"FINDINGS — [green]{counts.get('confirmed', 0)}●[/] "
+            f"[yellow]{counts.get('probable', 0)}◐[/] "
+            f"[dim]{counts.get('weak', 0)}○[/]"
+        )
 
     def _render_evidence(self, evidence: list) -> None:
         table = self.query_one("#evidence", DataTable)
@@ -317,21 +423,52 @@ class SiftTUI(App):
         tokens_out = sum(s.output_tokens for s in audit.statistics.values())
         tools = sum(s.tools_called for s in audit.statistics.values())
         errors = sum(s.errors for s in audit.statistics.values())
+        errors_text = f"[b red]{errors}[/]" if errors else "0"
         self.query_one("#status", Static).update(
             f"[b]tokens[/] in {tokens_in:,} / out {tokens_out:,}   "
-            f"[b]tools[/] {tools}   [b]errors[/] {errors}   "
-            f"[b]est[/] ${audit.total_cost_usd():.4f}   "
-            f"[dim]q quit · e export · c clear[/]"
+            f"[b]tools[/] {tools}   [b]errors[/] {errors_text}   "
+            f"[b]est[/] {self._cost_text(audit.total_cost_usd())}   "
+            f"[dim]q quit · e export · c clear · a ack[/]"
         )
 
+    @staticmethod
+    def _cost_text(cost: float) -> str:
+        budget = MAXIMUM_BUDGET_USD
+        if budget and cost >= budget:
+            return f"[b red]${cost:.4f} / ${budget:.2f} OVER[/]"
+        if budget and cost >= 0.8 * budget:
+            return f"[b yellow]${cost:.4f} / ${budget:.2f}[/]"
+        if budget:
+            return f"${cost:.4f} / ${budget:.2f}"
+        return f"${cost:.4f}"
+
     def _phase_bar(self) -> str:
-        return "  ▸  ".join(
-            f"[reverse b] {phase} [/]" if phase == self._phase else f"[dim]{phase}[/]"
-            for phase in PHASES
-        )
+        try:
+            active_index = PHASES.index(self._phase)
+        except ValueError:
+            active_index = len(PHASES)
+        parts = []
+        for index, phase in enumerate(PHASES):
+            if self._halted and phase == self._halt_phase:
+                parts.append(f"[b white on red] ✗ {phase} [/]")
+            elif self._completed and phase == "done":
+                parts.append(f"[b black on green] ✓ {phase} [/]")
+            elif index < active_index:
+                parts.append(f"[green]✓ {phase}[/]")
+            elif index == active_index and not self._halted and not self._completed:
+                parts.append(f"[reverse b] ⟳ {phase} [/]")
+            else:
+                parts.append(f"[dim]{phase}[/]")
+        return "  ▸  ".join(parts)
 
     def action_clear_log(self) -> None:
         self.query_one("#tools", RichLog).clear()
+
+    def action_ack(self) -> None:
+        self._alert_text = ""
+        self._alert_count = 0
+        self._alert_level = "error"
+        self._refresh_alert()
 
     def action_export(self) -> None:
         out_dir = Path(os.getenv("SIFT_REPORTS_DIRECTORY", "./reports"))
